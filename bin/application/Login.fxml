@@ -9,33 +9,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="550.0" prefWidth="900.0" style="-fx-background-color: #cf1f46;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="550.0" prefWidth="900.0" style="-fx-background-color: #cf1f46;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.LoginController">
    <children>
-      <Pane fx:id="pnl_main" prefHeight="550.0" prefWidth="314.0" style="-fx-background-color: #55595a;">
-         <children>
-            <ImageView fitHeight="194.0" fitWidth="197.0" layoutX="61.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../iste.png" />
-               </image>
-            </ImageView>
-            <Button fx:id="btn_ogretmen" layoutX="79.0" layoutY="275.0" mnemonicParsing="false" onAction="#btn_ogretmen_Click" prefHeight="36.0" prefWidth="159.0" style="-fx-background-radius: 10;" text="Öğretmen Girişi">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-            </Button>
-            <Button fx:id="btn_ogrenci" layoutX="98.0" layoutY="338.0" mnemonicParsing="false" onAction="#btn_ogrenci_Click" style="-fx-background-radius: 10;" text="Öğrenci Girişi">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-            </Button>
-            <Button fx:id="btn_admin" layoutX="98.0" layoutY="398.0" mnemonicParsing="false" onAction="#btn_admin_Click" prefHeight="36.0" prefWidth="123.0" style="-fx-background-radius: 10;" text="Admin Girişi">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-            </Button>
-         </children>
-      </Pane>
-      <Pane fx:id="pnl_ogrenci" layoutX="314.0" layoutY="84.0" prefHeight="420.0" prefWidth="374.0">
+      <Pane fx:id="pnl_ogrenci" layoutX="450.0" layoutY="78.0" prefHeight="420.0" prefWidth="374.0">
          <children>
             <Label layoutX="21.0" layoutY="135.0" text="Okul Numarası :">
                <font>
@@ -55,7 +31,7 @@
                </font>
             </Label>
             <TextField fx:id="txt_captcha" layoutX="157.0" layoutY="254.0" />
-            <Button fx:id="btn_login" layoutX="208.0" layoutY="303.0" mnemonicParsing="false" onAction="#btn_login_Click" prefHeight="18.0" prefWidth="97.0" text="Giriş Yap">
+            <Button fx:id="btn_login_o" layoutX="208.0" layoutY="303.0" mnemonicParsing="false" onAction="#btn_login_o_Click" onMouseEntered="#btn_login_o_OnMouse" onMouseExited="#btn_login_o_OffMouse" prefHeight="18.0" prefWidth="97.0" text="Giriş Yap">
                <font>
                   <Font size="14.0" />
                </font>
@@ -74,14 +50,14 @@
                   </Label>
                </children>
             </Pane>
-            <Label fx:id="lbl_reset" layoutX="117.0" layoutY="308.0" onMouseClicked="#lbl_reset_Click" text="Şifre Sıfırla">
+            <Label fx:id="lbl_reset_o" layoutX="117.0" layoutY="308.0" onMouseClicked="#lbl_reset_o_Click" onMouseEntered="#lbl_reset_o_OnMouse" onMouseExited="#lbl_reset_o_OffMouse" text="Şifre Sıfırla">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
          </children>
       </Pane>
-      <Pane fx:id="pnl_ogretmen" layoutX="177.0" layoutY="98.0" prefHeight="420.0" prefWidth="374.0">
+      <Pane fx:id="pnl_ogretmen" layoutX="145.0" layoutY="78.0" prefHeight="420.0" prefWidth="374.0">
          <children>
             <Label layoutX="21.0" layoutY="135.0" text="Kullanıcı Adı">
                <font>
@@ -101,7 +77,7 @@
                </font>
             </Label>
             <TextField layoutX="157.0" layoutY="254.0" />
-            <Button layoutX="208.0" layoutY="303.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="97.0" text="Giriş Yap">
+            <Button fx:id="btn_login_p" layoutX="208.0" layoutY="303.0" mnemonicParsing="false" onAction="#btn_login_p_click" onMouseEntered="#btn_login_p_OnMouse" onMouseExited="#btn_login_p_OffMouse" prefHeight="18.0" prefWidth="97.0" text="Giriş Yap">
                <font>
                   <Font size="14.0" />
                </font>
@@ -120,11 +96,35 @@
                   </Label>
                </children>
             </Pane>
-            <Label layoutX="117.0" layoutY="308.0" text="Şifre Sıfırla">
+            <Label fx:id="lbl_reset_p" layoutX="117.0" layoutY="308.0" onMouseClicked="#lbl_reset_p_Click" onMouseEntered="#lbl_reset_p_OnMouse" onMouseExited="#lbl_reset_p_OffMouse" text="Şifre Sıfırla">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
+         </children>
+      </Pane>
+      <Pane fx:id="pnl_main" prefHeight="550.0" prefWidth="314.0" style="-fx-background-color: #55595a;">
+         <children>
+            <ImageView fitHeight="194.0" fitWidth="197.0" layoutX="61.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@iste.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="btn_ogretmen" layoutX="89.0" layoutY="275.0" mnemonicParsing="false" onAction="#btn_ogretmen_Click" onMouseEntered="#btn_ogretmen_OnMouse" onMouseExited="#btn_ogretmen_OffMouse" prefHeight="36.0" prefWidth="141.0" style="-fx-background-radius: 10;" text="Öğretmen Girişi">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="btn_ogrenci" layoutX="89.0" layoutY="338.0" mnemonicParsing="false" onAction="#btn_ogrenci_Click" onMouseEntered="#btn_ogrenci_OnMouse" onMouseExited="#btn_ogrenci_OffMouse" prefHeight="36.0" prefWidth="141.0" style="-fx-background-radius: 10;" text="Öğrenci Girişi">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="btn_admin" layoutX="89.0" layoutY="398.0" mnemonicParsing="false" onAction="#btn_admin_Click" onMouseEntered="#btn_admin_OnMouse" onMouseExited="#btn_admin_OffMouse" prefHeight="36.0" prefWidth="141.0" style="-fx-background-radius: 10;" text="Admin Girişi">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Button>
          </children>
       </Pane>
    </children>
