@@ -5,9 +5,11 @@
 ## Öğrenci Bilgi Sistemi Otomasyonu
 
 ------
-![durum](https://user-images.githubusercontent.com/87149201/236657437-733c2e59-ba05-449d-a2ff-721714446b40.png)
+![durum](https://github.com/Iskenderun-Technical-University/ogrenci-sistemi-otomasyonu-YMG/assets/87149201/e8bf152c-22ec-41e1-a72a-da918949ab1d)
 
-![ilerleme3](https://user-images.githubusercontent.com/87149201/236657438-21e49f26-7be1-421e-8cc7-aea11519a7a2.png)
+
+![ilerleme](https://github.com/Iskenderun-Technical-University/ogrenci-sistemi-otomasyonu-YMG/assets/87149201/1a69ba7a-4ade-4288-bf1b-16e78ab3cdd5)
+
 
 ------
 
