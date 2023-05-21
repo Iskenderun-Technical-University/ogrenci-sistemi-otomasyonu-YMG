@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="550.0" prefWidth="900.0" style="-fx-background-color: #cf1f46;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.LoginController">
+   <children>
+      <Pane fx:id="pnl_main" prefHeight="550.0" prefWidth="314.0" style="-fx-background-color: #55595a;">
+         <children>
+            <ImageView fitHeight="194.0" fitWidth="197.0" layoutX="61.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../iste.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="btn_ogretmen" layoutX="79.0" layoutY="275.0" mnemonicParsing="false" onAction="#btn_ogretmen_Click" prefHeight="36.0" prefWidth="159.0" style="-fx-background-radius: 10;" text="Öğretmen Girişi">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="btn_ogrenci" layoutX="98.0" layoutY="338.0" mnemonicParsing="false" onAction="#btn_ogrenci_Click" style="-fx-background-radius: 10;" text="Öğrenci Girişi">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="btn_admin" layoutX="98.0" layoutY="398.0" mnemonicParsing="false" onAction="#btn_admin_Click" prefHeight="36.0" prefWidth="123.0" style="-fx-background-radius: 10;" text="Admin Girişi">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+      <Pane fx:id="pnl_ogrenci" layoutX="314.0" layoutY="84.0" prefHeight="420.0" prefWidth="374.0">
+         <children>
+            <Label layoutX="21.0" layoutY="135.0" text="Okul Numarası :">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txt_okulno" layoutX="157.0" layoutY="135.0" />
+            <Label layoutX="21.0" layoutY="184.0" text="Şifre :">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txt_osifre" layoutX="156.0" layoutY="184.0" />
+            <Label layoutX="22.0" layoutY="254.0" text="Doğrulama :">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txt_captcha" layoutX="157.0" layoutY="254.0" />
+            <Button fx:id="btn_login" layoutX="208.0" layoutY="303.0" mnemonicParsing="false" onAction="#btn_login_Click" prefHeight="18.0" prefWidth="97.0" text="Giriş Yap">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Label fx:id="lbl_ogrenci1" layoutX="90.0" layoutY="31.0" text="ÖĞRENCİ GİRİŞİ">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <Pane fx:id="pnl_captcha" layoutX="183.0" layoutY="217.0" prefHeight="28.0" prefWidth="113.0" style="-fx-background-color: #ed535d;">
+               <children>
+                  <Label fx:id="lbl_captcha_o" layoutX="26.0" layoutY="2.0" prefHeight="25.0" prefWidth="55.0" text="11+52">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Label fx:id="lbl_reset" layoutX="117.0" layoutY="308.0" onMouseClicked="#lbl_reset_Click" text="Şifre Sıfırla">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane fx:id="pnl_ogretmen" layoutX="177.0" layoutY="98.0" prefHeight="420.0" prefWidth="374.0">
+         <children>
+            <Label layoutX="21.0" layoutY="135.0" text="Kullanıcı Adı">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txt_kulad" layoutX="157.0" layoutY="135.0" />
+            <Label layoutX="21.0" layoutY="184.0" text="Şifre :">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txt_psifre" layoutX="156.0" layoutY="184.0" />
+            <Label layoutX="22.0" layoutY="254.0" text="Doğrulama :">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <TextField layoutX="157.0" layoutY="254.0" />
+            <Button layoutX="208.0" layoutY="303.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="97.0" text="Giriş Yap">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Label layoutX="90.0" layoutY="31.0" text="Öğretmen Girişi">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <Pane layoutX="183.0" layoutY="217.0" prefHeight="28.0" prefWidth="113.0" style="-fx-background-color: #ed535d;">
+               <children>
+                  <Label fx:id="lbl_captcha_p" layoutX="26.0" layoutY="2.0" prefHeight="25.0" prefWidth="55.0" text="11+52">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Label layoutX="117.0" layoutY="308.0" text="Şifre Sıfırla">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
