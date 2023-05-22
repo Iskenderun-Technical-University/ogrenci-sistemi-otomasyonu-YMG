@@ -1,10 +1,7 @@
 package application;
 
 import java.net.URL;
-import java.time.Duration;
 import java.util.ResourceBundle;
-import java.util.concurrent.Delayed;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -78,10 +75,12 @@ public class AdminPanelController {
     @FXML
     void btn_iptal_Click(ActionEvent event) {
     	
+    	Stage stage = (Stage) btn_iptal.getScene().getWindow();
+    	stage.close();
     	
-        Stage stage = (Stage) btn_iptal.getScene().getWindow();
+        
        
-        stage.close();
+       
     }
 
     @FXML

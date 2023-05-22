@@ -110,12 +110,12 @@
                   <Image url="@iste.png" />
                </image>
             </ImageView>
-            <Button fx:id="btn_ogretmen" layoutX="89.0" layoutY="275.0" mnemonicParsing="false" onAction="#btn_ogretmen_Click" onMouseEntered="#btn_ogretmen_OnMouse" onMouseExited="#btn_ogretmen_OffMouse" prefHeight="36.0" prefWidth="141.0" style="-fx-background-radius: 10;" text="Öğretmen Girişi">
+            <Button fx:id="btn_ogretmen" layoutX="87.0" layoutY="275.0" mnemonicParsing="false" onAction="#btn_ogretmen_Click" onMouseEntered="#btn_ogretmen_OnMouse" onMouseExited="#btn_ogretmen_OffMouse" prefHeight="36.0" prefWidth="141.0" style="-fx-background-radius: 10;" text="Öğretmen Girişi">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Button>
-            <Button fx:id="btn_ogrenci" layoutX="89.0" layoutY="338.0" mnemonicParsing="false" onAction="#btn_ogrenci_Click" onMouseEntered="#btn_ogrenci_OnMouse" onMouseExited="#btn_ogrenci_OffMouse" prefHeight="36.0" prefWidth="141.0" style="-fx-background-radius: 10;" text="Öğrenci Girişi">
+            <Button fx:id="btn_ogrenci" layoutX="89.0" layoutY="334.0" mnemonicParsing="false" onAction="#btn_ogrenci_Click" onMouseEntered="#btn_ogrenci_OnMouse" onMouseExited="#btn_ogrenci_OffMouse" prefHeight="36.0" prefWidth="141.0" style="-fx-background-radius: 10;" text="Öğrenci Girişi">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>

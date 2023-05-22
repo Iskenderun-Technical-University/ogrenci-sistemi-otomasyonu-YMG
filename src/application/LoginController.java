@@ -1,8 +1,8 @@
 package application;
 
 import java.net.URL;
+import java.time.Duration;
 import java.util.ResourceBundle;
-
 import javafx.animation.FadeTransition;
 import javafx.animation.ScaleTransition;
 import javafx.animation.TranslateTransition;
@@ -18,6 +18,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -64,6 +65,7 @@ public class LoginController {
 
     @FXML
     private Pane pnl_main;
+    
 
     @FXML
     private Pane pnl_ogrenci;
@@ -96,7 +98,9 @@ public class LoginController {
 			stage1.initStyle(StageStyle.TRANSPARENT);
 			stage1.setScene(scene);
 			
+			stage1.initModality(Modality.APPLICATION_MODAL);
 			stage1.show();
+			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -151,20 +155,17 @@ public class LoginController {
     @FXML
     void btn_ogrenci_Click(ActionEvent event) {
     	
+    	    btn_ogretmen.setDisable(false);
+    	    btn_ogrenci.setDisable(true);
     	
+    	    Move_Trantition(0, 1.5, 0,pnl_main);
     	
-    	
-    	
-    	Move_Trantition(0, 1.5, 0,pnl_main);
-        	
-        	btn_ogrenci.setDisable(true);
-        	btn_ogretmen.setDisable(false);
-    	
-    		
     		// ogrenci panlei kapanış
         	Fade_Trantition(0, 1, 1, 1.5, pnl_ogrenci);
         	// ogretmen paneli açılış
         	Fade_Trantition(1, 0, 0.5, 0, pnl_ogretmen);
+        	
+        	
         	
         	
   
@@ -182,19 +183,21 @@ public class LoginController {
     }
 
     @FXML
-    void btn_ogretmen_Click(ActionEvent event) {
-    
-    	Move_Trantition(599,1.5,0,pnl_main);
-    
-    	btn_ogrenci.setDisable(false);
+    void btn_ogretmen_Click(ActionEvent event) throws InterruptedException  {
     	btn_ogretmen.setDisable(true);
+    	
+    	Move_Trantition(599,1.5,0,pnl_main);
+       
     	
     	//ogretmen paneli açılış
     	Fade_Trantition(0, 1, 1, 1.5, pnl_ogretmen);
     	// öğrenci paneli kapanış
     	Fade_Trantition(1, 0, 0.5, 0, pnl_ogrenci);
-    
     	
+    
+    	btn_ogrenci.setDisable(false);
+    	
+    		
     	
     }
     
@@ -242,6 +245,7 @@ public class LoginController {
     void lbl_reset_p_OnMouse(MouseEvent event) {
     	lbl_reset_p.setUnderline(true);
     }
+   
     
 
     @FXML
@@ -291,8 +295,13 @@ public class LoginController {
     	trans.setDelay(javafx.util.Duration.seconds(gecikme));
     	trans.setNode(arguman);
     	trans.setToX(bitis);
+    
+          
     	
     	trans.play();
+    	
+    	
+    	
     	
     }
     public void Fade_Trantition(double baslangıc, double bitis, double sure,double gecikme, Node arguman) {
@@ -304,6 +313,7 @@ public class LoginController {
     	fade1.setFromValue(baslangıc);
     	fade1.setToValue(bitis);
     	fade1.play();
+    	
     	
     }
     public void Scale_Transtition(double baslangıc,double bitis,double sure,Node arguman) {
@@ -317,5 +327,11 @@ public class LoginController {
     	scale.setToY(bitis);
     	scale.play();
     }
+    
+    
+    
+    
+    
+    
     }
 
