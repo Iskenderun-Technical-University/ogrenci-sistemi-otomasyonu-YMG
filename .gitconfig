@@ -1,2 +1,5 @@
 [core]
 	autocrlf = false
+[user]
+	email = merdgn@hotmail.com
+	name = qumer0
