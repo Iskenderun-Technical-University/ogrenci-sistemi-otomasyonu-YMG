@@ -2,110 +2,107 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="550.0" prefWidth="900.0" style="-fx-background-color: #cf1f46;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.LoginController">
    <children>
-      <Pane fx:id="pnl_ogrenci" layoutX="450.0" layoutY="78.0" prefHeight="420.0" prefWidth="374.0">
+      <Pane fx:id="pnl_ogrenci" layoutX="395.0" layoutY="78.0" prefHeight="420.0" prefWidth="374.0">
          <children>
-            <Label layoutX="21.0" layoutY="135.0" text="Okul Numarası :">
+            <TextField fx:id="txt_okulno" alignment="CENTER" layoutX="54.0" layoutY="120.0" prefHeight="25.0" prefWidth="237.0" promptText="Öğrenci Numarası" style="-fx-background-color: 0 0 0 64;">
                <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-            </Label>
-            <TextField fx:id="txt_okulno" layoutX="157.0" layoutY="135.0" />
-            <Label layoutX="21.0" layoutY="184.0" text="Şifre :">
+                  <Font size="16.0" />
+               </font></TextField>
+            <TextField fx:id="txt_captcha" alignment="CENTER" layoutX="156.0" layoutY="249.0" prefHeight="36.0" prefWidth="149.0" promptText="Güvenlik Kodu" style="-fx-background-color: 0 0 0 64;">
                <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-            </Label>
-            <TextField fx:id="txt_osifre" layoutX="156.0" layoutY="184.0" />
-            <Label layoutX="22.0" layoutY="254.0" text="Doğrulama :">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-            </Label>
-            <TextField fx:id="txt_captcha" layoutX="157.0" layoutY="254.0" />
-            <Button fx:id="btn_login_o" layoutX="208.0" layoutY="303.0" mnemonicParsing="false" onAction="#btn_login_o_Click" onMouseEntered="#btn_login_o_OnMouse" onMouseExited="#btn_login_o_OffMouse" prefHeight="18.0" prefWidth="97.0" text="Giriş Yap">
+                  <Font size="16.0" />
+               </font></TextField>
+            <Button fx:id="btn_login_o" layoutX="182.0" layoutY="303.0" mnemonicParsing="false" onAction="#btn_login_o_Click" onMouseEntered="#btn_login_o_OnMouse" onMouseExited="#btn_login_o_OffMouse" prefHeight="18.0" prefWidth="97.0" style="-fx-background-color: #55595a; -fx-background-radius: 10 10 10 10;" text="Giriş Yap" textFill="#c7c7c7">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Label fx:id="lbl_ogrenci1" layoutX="90.0" layoutY="31.0" text="ÖĞRENCİ GİRİŞİ">
+            <Label fx:id="lbl_ogrenci1" layoutX="90.0" layoutY="26.0" text="ÖĞRENCİ GİRİŞİ" textFill="#55595a">
                <font>
-                  <Font size="19.0" />
+                  <Font size="26.0" />
                </font>
             </Label>
-            <Pane fx:id="pnl_captcha" layoutX="183.0" layoutY="217.0" prefHeight="28.0" prefWidth="113.0" style="-fx-background-color: #ed535d;">
+            <Pane fx:id="pnl_captcha" layoutX="34.0" layoutY="253.0" prefHeight="28.0" prefWidth="113.0" style="-fx-background-color: #ed535d; -fx-background-radius: 5 5 5 5; -fx-border-color: #55595a; -fx-border-radius: 5 5 5 5;">
                <children>
-                  <Label fx:id="lbl_captcha_o" layoutX="26.0" layoutY="2.0" prefHeight="25.0" prefWidth="55.0" text="11+52">
+                  <Label fx:id="lbl_captcha_o" layoutX="16.0" layoutY="2.0" prefHeight="25.0" prefWidth="82.0" text="11+52 = ?">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
-            <Label fx:id="lbl_reset_o" layoutX="117.0" layoutY="308.0" onMouseClicked="#lbl_reset_o_Click" onMouseEntered="#lbl_reset_o_OnMouse" onMouseExited="#lbl_reset_o_OffMouse" text="Şifre Sıfırla">
+            <Label fx:id="lbl_reset_o" layoutX="81.0" layoutY="308.0" onMouseClicked="#lbl_reset_o_Click" onMouseEntered="#lbl_reset_o_OnMouse" onMouseExited="#lbl_reset_o_OffMouse" text="Şifre Sıfırla" textFill="#55595a">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
+            <Line endX="157.800048828125" layoutX="144.0" layoutY="152.0" startX="-100.0" stroke="#55595a" strokeWidth="2.0" />
+            <Line endX="157.800048828125" layoutX="144.0" layoutY="210.0" startX="-100.0" stroke="#55595a" strokeWidth="2.0" />
+            <PasswordField fx:id="txt_osifre" alignment="CENTER" layoutX="54.0" layoutY="179.0" prefHeight="36.0" prefWidth="237.0" promptText="Şifre" style="-fx-background-color: 0 0 0 64;">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </PasswordField>
+            <Line endX="175.0" endY="-3.0517578125E-5" layoutX="133.0" layoutY="278.0" startX="19.0" startY="-3.0517578125E-5" stroke="#55595a" strokeWidth="2.0" />
          </children>
       </Pane>
-      <Pane fx:id="pnl_ogretmen" layoutX="145.0" layoutY="78.0" prefHeight="420.0" prefWidth="374.0">
+      <Pane fx:id="pnl_ogretmen" layoutX="140.0" layoutY="78.0" prefHeight="420.0" prefWidth="374.0" AnchorPane.bottomAnchor="52.0">
          <children>
-            <Label layoutX="21.0" layoutY="135.0" text="Kullanıcı Adı">
+            <TextField fx:id="txt_kulad" alignment="CENTER" layoutX="64.0" layoutY="122.0" prefHeight="25.0" prefWidth="237.0" promptText="Kullanıcı Adı" style="-fx-background-color: 0 0 0 64;">
                <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-            </Label>
-            <TextField fx:id="txt_kulad" layoutX="157.0" layoutY="135.0" />
-            <Label layoutX="21.0" layoutY="184.0" text="Şifre :">
+                  <Font size="16.0" />
+               </font></TextField>
+            <TextField fx:id="txt_psifre" alignment="CENTER" layoutX="64.0" layoutY="179.0" prefHeight="25.0" prefWidth="237.0" promptText="Şifre" style="-fx-background-color: 0 0 0 64;">
                <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-            </Label>
-            <TextField fx:id="txt_psifre" layoutX="156.0" layoutY="184.0" />
-            <Label layoutX="22.0" layoutY="254.0" text="Doğrulama :">
+                  <Font size="16.0" />
+               </font></TextField>
+            <TextField alignment="CENTER" layoutX="162.0" layoutY="249.0" prefHeight="36.0" prefWidth="149.0" promptText="Güvenlik Kodu" style="-fx-background-color: 0 0 0 64;">
                <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-            </Label>
-            <TextField layoutX="157.0" layoutY="254.0" />
-            <Button fx:id="btn_login_p" layoutX="208.0" layoutY="303.0" mnemonicParsing="false" onAction="#btn_login_p_click" onMouseEntered="#btn_login_p_OnMouse" onMouseExited="#btn_login_p_OffMouse" prefHeight="18.0" prefWidth="97.0" text="Giriş Yap">
+                  <Font size="16.0" />
+               </font></TextField>
+            <Button fx:id="btn_login_p" layoutX="188.0" layoutY="303.0" mnemonicParsing="false" onAction="#btn_login_p_click" onMouseEntered="#btn_login_p_OnMouse" onMouseExited="#btn_login_p_OffMouse" prefHeight="18.0" prefWidth="97.0" style="-fx-background-color: #55595a; -fx-background-radius: 10 10 10 10;" text="Giriş Yap" textFill="#c7c7c7">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Label layoutX="90.0" layoutY="31.0" text="Öğretmen Girişi">
+            <Label layoutX="77.0" layoutY="26.0" text="ÖĞRETMEN GİRİŞİ" textFill="#55595a">
                <font>
-                  <Font size="19.0" />
+                  <Font size="26.0" />
                </font>
             </Label>
-            <Pane layoutX="183.0" layoutY="217.0" prefHeight="28.0" prefWidth="113.0" style="-fx-background-color: #ed535d;">
+            <Pane layoutX="40.0" layoutY="253.0" prefHeight="28.0" prefWidth="113.0" style="-fx-background-color: #ed535d; -fx-background-radius: 5 5 5 5; -fx-border-radius: 5 5 5 5; -fx-border-color: #55595a;">
                <children>
-                  <Label fx:id="lbl_captcha_p" layoutX="26.0" layoutY="2.0" prefHeight="25.0" prefWidth="55.0" text="11+52">
+                  <Label fx:id="lbl_captcha_p" layoutX="16.0" layoutY="2.0" prefHeight="25.0" prefWidth="82.0" text="11+52 = ?">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
-            <Label fx:id="lbl_reset_p" layoutX="117.0" layoutY="308.0" onMouseClicked="#lbl_reset_p_Click" onMouseEntered="#lbl_reset_p_OnMouse" onMouseExited="#lbl_reset_p_OffMouse" text="Şifre Sıfırla">
+            <Label fx:id="lbl_reset_p" layoutX="60.0" layoutY="307.0" onMouseClicked="#lbl_reset_p_Click" onMouseEntered="#lbl_reset_p_OnMouse" onMouseExited="#lbl_reset_p_OffMouse" text="Şifre Sıfırla" textFill="#55595a">
                <font>
-                  <Font size="14.0" />
+                  <Font size="16.0" />
                </font>
             </Label>
+            <Line endX="157.800048828125" layoutX="154.0" layoutY="152.0" startX="-100.0" stroke="#55595a" strokeWidth="2.0" />
+            <Line endX="157.800048828125" layoutX="153.0" layoutY="210.0" startX="-100.0" stroke="#55595a" strokeWidth="2.0" />
+            <Line endX="175.0" endY="-3.0517578125E-5" layoutX="139.0" layoutY="279.0" startX="19.0" startY="-3.0517578125E-5" stroke="#55595a" strokeWidth="2.0" />
          </children>
       </Pane>
-      <Pane fx:id="pnl_main" prefHeight="550.0" prefWidth="314.0" style="-fx-background-color: #55595a;">
+      <Pane fx:id="pnl_main" prefHeight="550.0" prefWidth="314.0" style="-fx-background-color: #55595a;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ImageView fitHeight="194.0" fitWidth="197.0" layoutX="61.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="146.0" fitWidth="149.0" layoutX="84.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@iste.png" />
                </image>
@@ -120,7 +117,7 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </Button>
-            <Button fx:id="btn_admin" layoutX="89.0" layoutY="398.0" mnemonicParsing="false" onAction="#btn_admin_Click" onMouseEntered="#btn_admin_OnMouse" onMouseExited="#btn_admin_OffMouse" prefHeight="36.0" prefWidth="141.0" style="-fx-background-radius: 10;" text="Admin Girişi">
+            <Button fx:id="btn_admin" layoutX="89.0" layoutY="393.0" mnemonicParsing="false" onAction="#btn_admin_Click" onMouseEntered="#btn_admin_OnMouse" onMouseExited="#btn_admin_OffMouse" prefHeight="36.0" prefWidth="141.0" style="-fx-background-radius: 10;" text="Admin Girişi">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>

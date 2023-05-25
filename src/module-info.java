@@ -1,7 +1,14 @@
 module OBS {
-	requires javafx.controls;
+	requires transitive javafx.controls;
 	requires javafx.fxml;
-	requires javafx.graphics;
+	requires javafx.base;
+	requires transitive javafx.graphics;
+	
+	
 	
 	opens application to javafx.graphics, javafx.fxml;
+	exports application;
+	
+	
+	
 }

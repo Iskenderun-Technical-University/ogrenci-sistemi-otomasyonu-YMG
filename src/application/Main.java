@@ -12,18 +12,26 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("Login.fxml"));
+			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("OgrenciPanel.fxml"));
 			Scene scene = new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			
 			primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("iste.png")));
 			
+			
 			primaryStage.setScene(scene);
+			
 			primaryStage.setMaxHeight(550);
 			primaryStage.setMaxWidth(900);
-			primaryStage.setMinHeight(550);
-			primaryStage.setMinWidth(900);
+			primaryStage.setMinHeight(500);
+			primaryStage.setMinWidth(850);
+			
+			
+			
+			
+			
 			primaryStage.show();
+			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

@@ -1,11 +1,13 @@
 package application;
 
+
 import java.net.URL;
-import java.time.Duration;
 import java.util.ResourceBundle;
 import javafx.animation.FadeTransition;
 import javafx.animation.ScaleTransition;
 import javafx.animation.TranslateTransition;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -119,6 +121,21 @@ public class LoginController {
 
     @FXML
     void btn_login_o_Click(ActionEvent event) {
+    	try {
+    		Stage yeni_stage = new Stage();
+			AnchorPane pane1 = (AnchorPane)FXMLLoader.load(getClass().getResource("OgrenciPanel.fxml"));
+			Scene scene = new Scene(pane1); 
+		    yeni_stage.setScene(scene);
+			yeni_stage.show();
+			
+			Stage suanki_stage = (Stage) btn_login_o.getScene().getWindow();
+	    	suanki_stage.close();
+    		
+    		
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 
     }
     
@@ -155,15 +172,20 @@ public class LoginController {
     @FXML
     void btn_ogrenci_Click(ActionEvent event) {
     	
-    	    btn_ogretmen.setDisable(false);
+    
     	    btn_ogrenci.setDisable(true);
     	
     	    Move_Trantition(0, 1.5, 0,pnl_main);
-    	
+    	    Fade_Trantition(0, 1, 1, 1.5, pnl_ogrenci);
+    	    Fade_Trantition(1, 0, 0.5, 0, pnl_ogretmen);
+				
+			
+    	    
     		// ogrenci panlei kapanış
-        	Fade_Trantition(0, 1, 1, 1.5, pnl_ogrenci);
+        	
         	// ogretmen paneli açılış
-        	Fade_Trantition(1, 0, 0.5, 0, pnl_ogretmen);
+        	
+        	
         	
         	
         	
@@ -187,15 +209,46 @@ public class LoginController {
     	btn_ogretmen.setDisable(true);
     	
     	Move_Trantition(599,1.5,0,pnl_main);
-       
+    	
     	
     	//ogretmen paneli açılış
     	Fade_Trantition(0, 1, 1, 1.5, pnl_ogretmen);
     	// öğrenci paneli kapanış
     	Fade_Trantition(1, 0, 0.5, 0, pnl_ogrenci);
+		
     	
-    
-    	btn_ogrenci.setDisable(false);
+    	
+    	
+    	
+        pnl_main.translateXProperty().addListener(new ChangeListener<Number>() {
+        	@Override
+        	public void changed(ObservableValue<? extends Number> arg0, Number arg1, Number arg2) {
+        		String yenideger=String.valueOf(arg2);
+        		if (Double.parseDouble(yenideger)>598.9) {
+        			btn_ogrenci.setDisable(false);
+					
+				}
+        		if (Double.parseDouble(yenideger) >0) {
+        			btn_ogretmen.setDisable(true);
+					
+				}
+        		if (Double.parseDouble(yenideger)< 0.1) {
+        			btn_ogretmen.setDisable(false);
+        			
+					
+				}
+        		if (Double.parseDouble(yenideger)<598) {
+					btn_ogrenci.setDisable(true);
+				}
+    			
+    		}
+        		
+        	
+		});
+    	
+    	
+    	
+		
     	
     		
     	
@@ -276,13 +329,26 @@ public class LoginController {
     	Fade_Trantition(1, 0, 0.1, 0, pnl_ogretmen);
     	btn_ogrenci.setDisable(true);
     	
+    	
+    	
+    	
 
     }
 
     
     
+      private Stage Bustage;
+      
     
-    public void Move_Trantition(int bitis,double sure,double gecikme ,Node arguman) {
+    public Stage getBustage() {
+		return Bustage;
+	}
+
+	public void setBustage(Stage bustage) {
+		Bustage = bustage;
+	}
+
+	public void Move_Trantition(int bitis,double sure,double gecikme ,Node arguman) {
     	
     	// İnt Baslangıç haraketin başlayacagı pixel
     	// İnt Bitiş Haraketin biteceği pixel
@@ -328,10 +394,5 @@ public class LoginController {
     	scale.play();
     }
     
-    
-    
-    
-    
-    
-    }
+}
 
