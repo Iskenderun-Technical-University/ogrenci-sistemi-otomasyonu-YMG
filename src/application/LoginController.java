@@ -173,7 +173,7 @@ public class LoginController {
     void btn_ogrenci_Click(ActionEvent event) {
     	
     
-    	    btn_ogrenci.setDisable(true);
+    	    
     	
     	    Move_Trantition(0, 1.5, 0,pnl_main);
     	    Fade_Trantition(0, 1, 1, 1.5, pnl_ogrenci);
