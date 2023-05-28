@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1021.0" style="-fx-background-color: #A8AAAA;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.OgrenciBilgiGoruntuleController">
+   <children>
+      <Pane layoutX="74.0" layoutY="65.0" prefHeight="602.0" prefWidth="873.0" style="-fx-background-color: #C7D0D6;">
+         <children>
+            <VBox alignment="CENTER" layoutX="122.0" layoutY="77.0" prefHeight="449.0" prefWidth="182.0" spacing="30.0" style="-fx-background-color: #A8AAAA;">
+               <children>
+                  <Label text="Ogrenci No">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+                  <Label text="Ogrenci Mail">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="8.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label text="Ogrenci  TC">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets right="4.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label text="Ogrenci Sınıf">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="2.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label text="Ogrenci Adres">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+                  <Label text="Ogrenci Ad">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+                  <Label text="Ogrenci SoyAd">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER_LEFT" layoutX="349.0" layoutY="77.0" prefHeight="449.0" prefWidth="429.0" spacing="30.0" style="-fx-background-color: #A8AAAA;">
+               <children>
+                  <Label fx:id="lbl_ogrencino" text="Ogrenci No">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lbl_ogrencimail" text="Ogrenci Mail">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lbl_ogrencitc" text="Ogrenci  TC">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lbl_ogrencisinif" text="Ogrenci Sınıf">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lbl_ogrenciadres" text="Ogrenci Adres">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lbl_ogrenciad" text="Ogrenci Ad">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lbl_ogrencisoyad" text="Ogrenci SoyAd">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER_LEFT" layoutX="303.0" layoutY="77.0" prefHeight="449.0" prefWidth="47.0" spacing="30.0" style="-fx-background-color: #A8AAAA;">
+               <children>
+                  <Label text=":">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+                  <Label text=":">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+                  <Label text=":">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+                  <Label text=":">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+                  <Label text=":">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+                  <Label text=":">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+                  <Label text=":">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
