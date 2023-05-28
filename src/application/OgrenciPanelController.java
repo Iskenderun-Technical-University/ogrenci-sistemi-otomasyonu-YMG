@@ -327,7 +327,7 @@ public class OgrenciPanelController {
 
 	    }
 	    
-	    ObservableList<DersProgramı> liste;
+	    ObservableList<DersProgrami> liste;
 	  
 	    
 
@@ -407,16 +407,16 @@ public class OgrenciPanelController {
 	    @FXML
 	    void btn_ders_programı_Click(ActionEvent event) {
 	    	liste=FXCollections.observableArrayList();
-	        liste.add(new DersProgramı("9:30 - 10:20", "BM-102", "Bilgi Ağ", "A-102", "Mehmet"));
-	        liste.add(new DersProgramı("10:30 - 11:20", "BM-102", "Bilgi Ağ", "A-102", "Ali"));
+	        liste.add(new DersProgrami("9:30 - 10:20", "BM-102", "Bilgi Ağ", "A-102", "Mehmet"));
+	        liste.add(new DersProgrami("10:30 - 11:20", "BM-102", "Bilgi Ağ", "A-102", "Ali"));
 	        
 	    	
 	        try {
             	
-            	FXMLLoader derprogramı = new FXMLLoader(getClass().getResource("DersProgramı.fxml"));
+            	FXMLLoader derprogramı = new FXMLLoader(getClass().getResource("DersProgrami.fxml"));
             	
             	AnchorPane pane = derprogramı.load();
-                	DersProgramıController gunler = derprogramı.getController();
+                	DersProgramiController gunler = derprogramı.getController();
                 	gunler.Program_Ata(liste, liste, liste, liste, liste);
                
             	anchor_main.getChildren().setAll(pane);
@@ -424,7 +424,7 @@ public class OgrenciPanelController {
     		
 				
 			} catch (Exception e) {
-				// TODO: handle exception
+				System.out.println(e.getMessage().toString());
 			}
 	    	
 

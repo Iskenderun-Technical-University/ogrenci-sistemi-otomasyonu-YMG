@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -10,7 +9,7 @@
 
 <AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.OgrenciPanelController">
    <children>
-      <AnchorPane fx:id="anchor_main" layoutX="259.0" prefHeight="720.0" prefWidth="1021.0" style="-fx-background-color: #A8AAAA;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="258.4" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <AnchorPane fx:id="anchor_main" layoutX="259.0" prefHeight="720.0" prefWidth="1021.0" style="-fx-background-color: #A8AAAA;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="259.0" AnchorPane.rightAnchor="-0.599999999999909" AnchorPane.topAnchor="0.0" />
       <VBox alignment="TOP_CENTER" layoutX="-1.0" prefHeight="724.0" prefWidth="262.0" spacing="15.0" style="-fx-background-color: #55595a; -fx-border-color: #3a3a3a;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ImageView fitHeight="132.0" fitWidth="148.0" pickOnBounds="true" preserveRatio="true">
@@ -29,21 +28,6 @@
                </font>
             </Button>
             <Button fx:id="btn_staj" mnemonicParsing="false" onMouseEntered="#btn_staj_OnMouse" onMouseExited="#btn_staj_OffMouse" prefHeight="60.0" prefWidth="278.0" style="-fx-background-color: 0 0 0 64;" text="Staj Bilgileri" textFill="WHITE">
-               <font>
-                  <Font size="19.0" />
-               </font>
-            </Button>
-            <Button fx:id="btn_hazırlık" mnemonicParsing="false" onMouseEntered="#btn_hazırlık_OnMouse" onMouseExited="#btn_hazırlık_OffMouse" prefHeight="60.0" prefWidth="261.0" style="-fx-background-color: 0 0 0 64;" text="Hazırlık Bilgileri" textFill="WHITE">
-               <font>
-                  <Font size="19.0" />
-               </font>
-            </Button>
-            <Button fx:id="btn_yoksis" mnemonicParsing="false" onMouseDragged="#btn_genel_OffMouse" onMouseEntered="#btn_yoksis_OnMouse" onMouseExited="#btn_yoksis_OffMouse" prefHeight="60.0" prefWidth="265.0" style="-fx-background-color: 0 0 0 64;" text="Yöksis Bilgileri" textFill="WHITE">
-               <font>
-                  <Font size="19.0" />
-               </font>
-            </Button>
-            <Button fx:id="btn_basvuru" mnemonicParsing="false" onMouseEntered="#btn_basvuru_OnMouse" onMouseExited="#btn_basvuru_OffMouse" prefHeight="60.0" prefWidth="266.0" style="-fx-background-color: 0 0 0 64;" text="Başvuru İşlemleri" textFill="WHITE">
                <font>
                   <Font size="19.0" />
                </font>
@@ -67,11 +51,6 @@
                   <Font size="15.0" />
                </font>
             </Button>
-            <Button fx:id="btn_sınav_takvimi" mnemonicParsing="false" onAction="#btn_sınav_takvimi_Click" onMouseEntered="#btn_sınav_takvimi_OnMouse" onMouseExited="#btn_sınav_takvimi_OffMouse" prefHeight="34.0" prefWidth="198.0" style="-fx-background-color: #55595a; -fx-background-radius: 0 20 0 0;" text="Sınav Takvimi" textFill="WHITE">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Button>
             <Button fx:id="btn_ders_programı" mnemonicParsing="false" onAction="#btn_ders_programı_Click" onMouseEntered="#btn_ders_programı_OnMouse" onMouseExited="#btn_ders_programı_OffMouse" prefHeight="34.0" prefWidth="198.0" style="-fx-background-color: #55595a; -fx-background-radius: 0 20 0 0;" text="Ders Programı" textFill="WHITE">
                <font>
                   <Font size="15.0" />
@@ -84,19 +63,55 @@
             </Button>
          </children>
       </VBox>
-      <VBox fx:id="pnl_donem" layoutX="259.0" layoutY="222.0" onMouseEntered="#pnl_donem_OnMouse" onMouseExited="#pnl_donem_OffMouse" prefHeight="250.0" prefWidth="200.0" style="-fx-background-color: #55595a; -fx-background-radius: 0 20 20 20; -fx-border-color: #3a3a3a; -fx-border-radius: 0 20 20 20;" visible="false" />
-      <VBox fx:id="pnl_staj" layoutX="259.0" layoutY="296.0" onMouseEntered="#pnl_staj_OnMouse" onMouseExited="#pnl_staj_OffMouse" prefHeight="250.0" prefWidth="200.0" style="-fx-background-color: #55595a; -fx-background-radius: 0 20 20 20; -fx-border-color: #3a3a3a; -fx-border-radius: 0 20 20 20;" visible="false" />
-      <VBox fx:id="pnl_hazırlık" layoutX="259.0" layoutY="373.0" onMouseEntered="#pnl_hazırlık_OnMouse" onMouseExited="#pnl_hazırlık_OffMouse" prefHeight="250.0" prefWidth="200.0" style="-fx-background-color: #55595a; -fx-background-radius: 0 20 20 20; -fx-border-color: #3a3a3a; -fx-border-radius: 0 20 20 20;" visible="false" />
-      <VBox fx:id="pnl_yoksis" layoutX="259.0" layoutY="448.0" onMouseEntered="#pnl_yoksis_OnMouse" onMouseExited="#pnl_yoksis_OffMouse" prefHeight="250.0" prefWidth="200.0" style="-fx-background-color: #55595a; -fx-background-radius: 0 20 20 20; -fx-border-color: #3a3a3a; -fx-border-radius: 0 20 20 20;" visible="false">
-         <opaqueInsets>
-            <Insets top="-17.0" />
-         </opaqueInsets>
+      <VBox fx:id="pnl_donem" layoutX="259.0" layoutY="222.0" onMouseEntered="#pnl_donem_OnMouse" onMouseExited="#pnl_donem_OffMouse" prefHeight="250.0" prefWidth="200.0" spacing="14.0" style="-fx-background-color: #55595a; -fx-background-radius: 0 20 20 20; -fx-border-color: #3a3a3a; -fx-border-radius: 0 20 20 20;" visible="false">
+         <children>
+            <Button fx:id="btn_dersEkle" mnemonicParsing="false" onAction="#btn_dersEkle_Click" onMouseEntered="#btn_dersEkle_OnMouse" onMouseExited="#btn_dersEkle_OffMouse" prefHeight="34.0" prefWidth="198.0" style="-fx-background-color: #55595a; -fx-background-radius: 0 20 0 0;" text="Ders Kayıt" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="btn_notlar" mnemonicParsing="false" onAction="#btn_notlar_Click" onMouseEntered="#btn_notlar_OnMouse" onMouseExited="#btn_notlar_OffMouse" prefHeight="34.0" prefWidth="198.0" style="-fx-background-color: #55595a; -fx-background-radius: 0 20 0 0;" text="Not Listesi" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="btn_trans" mnemonicParsing="false" onAction="#btn_trans_Click" onMouseEntered="#btn_trans_OnMouse" onMouseExited="#btn_trans_OffMouse" prefHeight="34.0" prefWidth="198.0" style="-fx-background-color: #55595a; -fx-background-radius: 0 20 0 0;" text="Transkript" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+         </children></VBox>
+      <VBox fx:id="pnl_staj" layoutX="259.0" layoutY="296.0" onMouseEntered="#pnl_staj_OnMouse" onMouseExited="#pnl_staj_OffMouse" prefHeight="250.0" prefWidth="200.0" spacing="14.0" style="-fx-background-color: #55595a; -fx-background-radius: 0 20 20 20; -fx-border-color: #3a3a3a; -fx-border-radius: 0 20 20 20;" visible="false">
+         <children>
+            <Button fx:id="btn_stajbasvuru" mnemonicParsing="false" onAction="#btn_stajbasvuru_Click" onMouseEntered="#btn_stajbasvuru_OnMouse" onMouseExited="#btn_stajbasvuru_OffMouse" prefHeight="34.0" prefWidth="198.0" style="-fx-background-color: #55595a; -fx-background-radius: 0 20 0 0;" text="WIP" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="btn_stajdurumu" mnemonicParsing="false" onAction="#btn_stajdurumu_Click" onMouseEntered="#btn_stajdurumu_OnMouse" onMouseExited="#btn_stajdurumu_OffMouse" prefHeight="34.0" prefWidth="198.0" style="-fx-background-color: #55595a; -fx-background-radius: 0 20 0 0;" text="WIP" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+         </children>
       </VBox>
-      <VBox fx:id="pnl_basvuru" layoutX="259.0" layoutY="335.0" onMouseEntered="#pnl_basvuru_OnMouse" onMouseExited="#pnl_basvuru_OffMouse" prefHeight="250.0" prefWidth="200.0" style="-fx-background-color: #55595a; -fx-background-radius: 20 20 20 0; -fx-border-color: #3a3a3a; -fx-border-radius: 20 20 20 0;" visible="false">
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-      </VBox>
-      <VBox fx:id="pnl_kullanıcı" layoutX="259.0" layoutY="409.0" onMouseEntered="#pnl_kullanıcı_OnMouse" onMouseExited="#pnl_kullanıcı_OffMouse" prefHeight="250.0" prefWidth="200.0" style="-fx-background-color: #55595a; -fx-background-radius: 20 20 20 0; -fx-border-color: #3a3a3a; -fx-border-radius: 20 20 20 0;" visible="false" />
+      <VBox fx:id="pnl_kullanıcı" layoutX="259.0" layoutY="373.0" onMouseEntered="#btn_kullanıcı_OnMouse" onMouseExited="#btn_kullanıcı_OffMouse" prefHeight="250.0" prefWidth="200.0" spacing="14.0" style="-fx-background-color: #55595a; -fx-background-radius: 0 20 20 20; -fx-border-color: #3a3a3a; -fx-border-radius: 0 20 20 20;" visible="false">
+         <children>
+            <Button fx:id="btn_sifredegistir" mnemonicParsing="false" onAction="#btn_sifredegistir_Click" onMouseEntered="#btn_sifredegistir_OnMouse" onMouseExited="#btn_sifredegistir_OffMouse" prefHeight="34.0" prefWidth="198.0" style="-fx-background-color: #55595a; -fx-background-radius: 0 20 0 0;" text="Şifre Değiştir" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="btn_maildegistir" mnemonicParsing="false" onAction="#btn_maildegistir_Click" onMouseEntered="#btn_maildegistir_OnMouse" onMouseExited="#btn_maildegistir_OffMouse" prefHeight="34.0" prefWidth="198.0" style="-fx-background-color: #55595a; -fx-background-radius: 0 20 0 0;" text="Mail Adresi Değiştir" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="btn_bilgigoruntule" mnemonicParsing="false" onAction="#btn_bilgigoruntule_Click" onMouseEntered="#btn_bilgigorumtule_OnMouse" onMouseExited="#btn_bilgigoruntule_OffMouse" prefHeight="34.0" prefWidth="198.0" style="-fx-background-color: #55595a; -fx-background-radius: 0 20 0 0;" text="Bilgileri Görüntüle" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+         </children></VBox>
    </children>
 </AnchorPane>
