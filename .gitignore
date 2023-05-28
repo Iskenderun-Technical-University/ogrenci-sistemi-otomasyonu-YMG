@@ -1,0 +1,8 @@
+bin/
+
+# Log file
+*.log
+
+.bash_history
+
+.lessht
