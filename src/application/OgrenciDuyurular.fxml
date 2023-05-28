@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1021.0" style="-fx-background-color: #A8AAAA;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.OgrenciDuyurularController">
+   <children>
+      <Pane layoutX="58.0" layoutY="48.0" prefHeight="594.0" prefWidth="918.0" style="-fx-background-color: #8EB1CA;">
+         <children>
+            <Label fx:id="lbl_baslık" alignment="CENTER" layoutX="13.0" layoutY="50.0" prefHeight="50.0" prefWidth="892.0" text="Başlık">
+               <font>
+                  <Font size="34.0" />
+               </font>
+            </Label>
+            <TextArea fx:id="txt_area" editable="false" layoutX="37.0" layoutY="127.0" prefHeight="439.0" prefWidth="845.0" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
