@@ -40,6 +40,8 @@ public class AdminPanelController {
     
     @FXML
     private AnchorPane anchor_pane;
+    
+   
 
     @FXML
     private TextField txt_sifre;
