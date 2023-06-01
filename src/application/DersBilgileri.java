@@ -24,6 +24,13 @@ public class DersBilgileri {
 		this.kredi=kredi;
 		this.akts=akts;
 	}
+	 
+	 public DersBilgileri(String dersKodu,String dersAdı , int sınıf ,int kredi ) {
+		 this.dersKodu=dersKodu;
+		 this.dersAdı=dersAdı;
+		 this.sınıf=sınıf;
+		 this.kredi=kredi;
+	}
 
 
 	public String getDersKodu() {

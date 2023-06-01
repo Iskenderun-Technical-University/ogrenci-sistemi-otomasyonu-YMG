@@ -93,18 +93,22 @@ public class LoginController {
     @FXML
     void btn_admin_Click(ActionEvent event) {
     	try {
-    		Stage stage1 = new Stage();
-			AnchorPane pane1 = (AnchorPane)FXMLLoader.load(getClass().getResource("AdminPanel.fxml"));
-			Scene scene = new Scene(pane1); 
-			scene.setFill(Color.TRANSPARENT);
-			stage1.initStyle(StageStyle.TRANSPARENT);
-			stage1.setScene(scene);
+    		FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminLogin.fxml"));
+			AnchorPane pane2 = (AnchorPane) loader.load();
+			AdminLogin nesne = loader.getController();
 			
-			stage1.initModality(Modality.APPLICATION_MODAL);
-			stage1.show();
+			Scene scene2 = new Scene(pane2);
+			nesne.stage_Kapat(btn_admin);
+			Stage stage2 = new Stage();
+			
+			stage2.initStyle(StageStyle.TRANSPARENT);
+			scene2.setFill(Color.TRANSPARENT);
+			stage2.initModality(Modality.APPLICATION_MODAL);
+			stage2.setScene(scene2);
+			stage2.show();
 			
 		} catch(Exception e) {
-			e.printStackTrace();
+			System.out.println(e);
 		}
     	
     }
@@ -154,6 +158,23 @@ public class LoginController {
 
     @FXML
     void btn_login_p_click(ActionEvent event) {
+    	
+    	try {
+    		Stage yeni_stage = new Stage();
+			AnchorPane pane1 = (AnchorPane)FXMLLoader.load(getClass().getResource("OgretmenPanel.fxml"));
+			Scene scene = new Scene(pane1); 
+		    yeni_stage.setScene(scene);
+			yeni_stage.show();
+			
+			Stage suanki_stage = (Stage) btn_login_o.getScene().getWindow();
+	    	suanki_stage.close();
+    		
+    		
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage().toString());
+		}
 
     }
     

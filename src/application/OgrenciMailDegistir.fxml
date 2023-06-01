@@ -8,10 +8,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="720.0" prefWidth="1021.0" style="-fx-background-color: #A8AAAA;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="application.OgrenciMailDegistirController">
+<AnchorPane prefHeight="720.0" prefWidth="1021.0" style="-fx-background-color: #A8AAAA;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.OgrenciMailDegistirController">
    <children>
-      <Pane layoutX="91.0" layoutY="76.0" prefHeight="433.0" prefWidth="839.0" style="-fx-background-color: #C7D0D6;">
+      <Pane layoutX="91.0" layoutY="69.0" prefHeight="433.0" prefWidth="839.0" style="-fx-background-color: #C7D0D6;">
          <children>
             <Label layoutX="64.0" layoutY="75.0" prefHeight="31.0" prefWidth="113.0" text="Eski Mail  :">
                <font>

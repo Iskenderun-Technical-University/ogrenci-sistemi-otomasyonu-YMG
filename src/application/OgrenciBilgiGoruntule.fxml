@@ -9,9 +9,9 @@
 
 <AnchorPane prefHeight="720.0" prefWidth="1021.0" style="-fx-background-color: #A8AAAA;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.OgrenciBilgiGoruntuleController">
    <children>
-      <Pane layoutX="74.0" layoutY="65.0" prefHeight="602.0" prefWidth="873.0" style="-fx-background-color: #C7D0D6;">
+      <Pane layoutX="74.0" layoutY="70.0" prefHeight="602.0" prefWidth="873.0" style="-fx-background-color: #C7D0D6; -fx-background-radius: 100 0 100 0;">
          <children>
-            <VBox alignment="CENTER" layoutX="122.0" layoutY="77.0" prefHeight="449.0" prefWidth="182.0" spacing="30.0" style="-fx-background-color: #A8AAAA;">
+            <VBox alignment="CENTER" layoutX="109.0" layoutY="77.0" prefHeight="449.0" prefWidth="182.0" spacing="30.0" style="-fx-background-color: #AFDCF9; -fx-background-radius: 50 0 0 0;">
                <children>
                   <Label text="Ogrenci No">
                      <font>
@@ -59,7 +59,7 @@
                   </Label>
                </children>
             </VBox>
-            <VBox alignment="CENTER_LEFT" layoutX="349.0" layoutY="77.0" prefHeight="449.0" prefWidth="429.0" spacing="30.0" style="-fx-background-color: #A8AAAA;">
+            <VBox alignment="CENTER_LEFT" layoutX="336.0" layoutY="77.0" prefHeight="449.0" prefWidth="429.0" spacing="30.0" style="-fx-background-color: #AFDCF9; -fx-background-radius: 0 0 50 0;">
                <children>
                   <Label fx:id="lbl_ogrencino" text="Ogrenci No">
                      <font>
@@ -98,7 +98,7 @@
                   </Label>
                </children>
             </VBox>
-            <VBox alignment="CENTER_LEFT" layoutX="303.0" layoutY="77.0" prefHeight="449.0" prefWidth="47.0" spacing="30.0" style="-fx-background-color: #A8AAAA;">
+            <VBox alignment="CENTER_LEFT" layoutX="290.0" layoutY="77.0" prefHeight="449.0" prefWidth="47.0" spacing="30.0" style="-fx-background-color: #AFDCF9;">
                <children>
                   <Label text=":">
                      <font>

@@ -19,6 +19,8 @@ public class OgrenciBilgiGoruntule {
 		this.adres=adres;
 		this.sinif=sinif;
 	}
+	
+	public OgrenciBilgiGoruntule() {};
 
 	public String getOgrenci_ad() {
 		return ogrenci_ad;

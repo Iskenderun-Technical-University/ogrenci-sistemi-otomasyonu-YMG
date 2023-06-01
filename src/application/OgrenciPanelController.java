@@ -133,6 +133,22 @@ public class OgrenciPanelController {
 	    
 	    @FXML
 	    void btn_maildegistir_Click(ActionEvent event) {
+	    	try {
+             	
+             	
+             	FXMLLoader mailadresi = new FXMLLoader(getClass().getResource("OgrenciMailDegistir.fxml"));
+             	
+             	 AnchorPane pane = mailadresi.load();
+                
+                
+                  
+                 anchor_main.getChildren().setAll(pane);
+     			
+     		
+					
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
 
 	    }
 
@@ -150,6 +166,22 @@ public class OgrenciPanelController {
 	    
 	    @FXML
 	    void btn_sifredegistir_Click(ActionEvent event) {
+	    	
+	    	try {
+	    	
+	    	FXMLLoader sifre = new FXMLLoader(getClass().getResource("OgrenciSifreDegistir.fxml"));
+         	
+        	 AnchorPane pane = sifre.load();
+           
+           
+             
+            anchor_main.getChildren().setAll(pane);
+			
+		
+				
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
 
 	    }
 

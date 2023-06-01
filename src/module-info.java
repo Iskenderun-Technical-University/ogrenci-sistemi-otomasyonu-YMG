@@ -3,6 +3,7 @@ module OBS {
 	requires javafx.fxml;
 	requires javafx.base;
 	requires transitive javafx.graphics;
+	requires java.sql;
 
 	
 	

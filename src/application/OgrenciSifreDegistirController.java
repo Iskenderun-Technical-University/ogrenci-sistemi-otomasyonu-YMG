@@ -49,8 +49,7 @@ public class OgrenciSifreDegistirController {
           yenisifre=txt_yenisifre.getText();
           yenisfretekrar=txt_yenisifretekrar.getText();
           
-          System.out.println(txt_yenisifre.getText());
-          System.out.println(txt_yenisifretekrar.getText());
+       
           
           if (eskisifre_yeni.equals("") || yenisifre.equals("") || yenisfretekrar.equals("")) {
         	  Alert alert =new Alert(AlertType.ERROR);

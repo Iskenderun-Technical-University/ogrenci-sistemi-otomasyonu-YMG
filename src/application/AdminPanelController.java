@@ -2,18 +2,15 @@ package application;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import javafx.stage.Stage;
-
 
 public class AdminPanelController {
 
@@ -22,91 +19,201 @@ public class AdminPanelController {
 
     @FXML
     private URL location;
-    
-    @FXML
-    private BorderPane border_pane;
 
     @FXML
-    private Button btn_giris;
+    private AnchorPane anchor_main;
 
     @FXML
-    private Button btn_iptal;
+    private Button btn_dersKayıt;
 
     @FXML
-    private RadioButton rdio_kontrol;
+    private Button btn_dersProgrami;
 
     @FXML
-    private TextField txt_kulad;
-    
-    @FXML
-    private AnchorPane anchor_pane;
-    
-   
+    private Button btn_ogrKayit;
 
     @FXML
-    private TextField txt_sifre;
-    LoginController login =new LoginController();
+    private Button btn_ogretimKaydi;
+
+
 
     @FXML
-    void btn_giris_Click(ActionEvent event) {
-    	if (rdio_kontrol.isSelected()==true) {
+    void btn_dersKayıt_Click(ActionEvent event) {
+    	 try {
+          	
+          	
+          	FXMLLoader bilgi = new FXMLLoader(getClass().getResource("YeniDersKayit.fxml"));
+          	
+          	 AnchorPane pane = bilgi.load();
+         
+              anchor_main.getChildren().setAll(pane);
+  			
+  		
+					
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
+    }
+
+    @FXML
+    void btn_dersKayıt_OffMouse(MouseEvent event) {
+    	btn_dersKayıt.setStyle(" -fx-background-color: #55595a;");
+    }
+
+    @FXML
+    void btn_dersKayıt_OnMouse(MouseEvent event) {
+    	btn_dersKayıt.setStyle("-fx-background-color:#8B8E8E;");
+    }
+     
+    private ObservableList<Dersler> ders;
+    @FXML
+    void btn_dersProgrami_Click(ActionEvent event) {
+    	bolumler=FXCollections.observableArrayList();
+    	ders=FXCollections.observableArrayList();
+    	ders.add(new Dersler(0, "Bİlgisayar ağları"));
+    	ders.add(new Dersler(0, "Bİlgisayar Yönetimi"));
+    	
+    	bolumler.add(new Bolum(0, "BG"));
+    	bolumler.add(new Bolum(0, "IG"));
+    	 try {
+            	
+            	
+            	FXMLLoader bilgi = new FXMLLoader(getClass().getResource("YeniDersProgrami.fxml"));
+            	
+            	 AnchorPane pane = bilgi.load();
+            	 YeniDersProgramiController dersProgrami =bilgi.getController();
+                 dersProgrami.bolum_ata(bolumler);
+                 dersProgrami.ders_ata(ders);
+           
+                anchor_main.getChildren().setAll(pane);
+    			
     		
-			
-		}
-    	else {
-    		Alert alert =new Alert(AlertType.INFORMATION);
-    		alert.setHeaderText("Bot Doğrulaması yapılamadı");
-    		alert.setTitle("DİKKAT");
-    		alert.setContentText("Lütfen Bot Doğrulamasını İşaretleyiniz.");
-    		alert.showAndWait();
-    	}
+  					
+  				} catch (Exception e) {
+  					System.out.println(e.getMessage().toString());
+  				}
 
     }
 
     @FXML
-    void btn_giris_OffMouse(MouseEvent event) {
-            login.Scale_Transtition(1.1, 1, 0.5, btn_giris);
+    void btn_dersProgrami_OfMouse(MouseEvent event) {
+    	btn_dersProgrami.setStyle(" -fx-background-color: #55595a;");
+
     }
 
     @FXML
-    void btn_giris_OnMouse(MouseEvent event) {
+    void btn_dersProgrami_OnMouse(MouseEvent event) {
+    	btn_dersProgrami.setStyle("-fx-background-color:#8B8E8E;");
+
+    }
+    
+    private ObservableList<Fakulte> fakulteler;
+    private ObservableList<Bolum> bolumler;
+    private ObservableList<Danisman> danismanlar;
+
+    @FXML
+    void btn_ogrKayit_Click(ActionEvent event) {
+    	fakulteler=FXCollections.observableArrayList();
+    	bolumler=FXCollections.observableArrayList();
+    	danismanlar=FXCollections.observableArrayList();
+    	fakulteler.add(new Fakulte(0, "Mdbf"));
+    	fakulteler.add(new Fakulte(1, "FAK"));
+    	bolumler.add(new Bolum(0, "BG"));
+    	bolumler.add(new Bolum(0, "IG"));
+    	danismanlar.add(new Danisman(0, "ad1", "soyad"));
+    	danismanlar.add(new Danisman(0, "ad2", "soyad"));  
     	
-    	login.Scale_Transtition(1, 1.1, 0.5, btn_giris);
-    }
-
-    @FXML
-    void btn_iptal_Click(ActionEvent event) {
+    	 try {
+           	
+           	
+           	FXMLLoader bilgi = new FXMLLoader(getClass().getResource("YeniOgrenciEkle.fxml"));
+           	
+           	 AnchorPane pane = bilgi.load();
+           	 YeniOgrenciEkleController ogrenci =bilgi.getController();
+             ogrenci.bolum_ata(bolumler);
+          	 ogrenci.danısman_ata(danismanlar);
+           	 ogrenci.fak_ata(fakulteler);
+          
+               anchor_main.getChildren().setAll(pane);
+   			
+   		
+ 					
+ 				} catch (Exception e) {
+ 					System.out.println(e.getMessage().toString());
+ 				}
     	
-    	Stage stage = (Stage) btn_iptal.getScene().getWindow();
-    	stage.close();
     	
-        
-       
-       
+
     }
 
     @FXML
-    void btn_iptal_OffMouse(MouseEvent event) {
-             login.Scale_Transtition(1.1, 1, 0.5, btn_iptal);
-             
+    void btn_ogrKayit_OffMouse(MouseEvent event) {
+    	btn_ogrKayit.setStyle(" -fx-background-color: #55595a;");
+
     }
 
     @FXML
-    void btn_iptal_OnMouse(MouseEvent event) {
-              login.Scale_Transtition(1, 1.1, 0.5, btn_iptal);
+    void btn_ogrKayit_OnMouse(MouseEvent event) {
+    	btn_ogrKayit.setStyle("-fx-background-color:#8B8E8E;");
+
     }
+
+    @FXML
+    void btn_ogretimKaydi_Click(ActionEvent event) {
+    	fakulteler=FXCollections.observableArrayList();
+    	bolumler=FXCollections.observableArrayList();
+    	
+    	fakulteler.add(new Fakulte(0, "Mdbf"));
+    	fakulteler.add(new Fakulte(1, "FAK"));
+    	bolumler.add(new Bolum(0, "BG"));
+    	bolumler.add(new Bolum(0, "IG"));
+    
+    	
+    	 try {
+           	
+           	
+           	FXMLLoader bilgi = new FXMLLoader(getClass().getResource("YeniDanismanEkle.fxml"));
+           	
+           	 AnchorPane pane = bilgi.load();
+           	 YeniDanismanEkleController danisman =bilgi.getController();
+             danisman.bolum_ata(bolumler);
+             danisman.fak_ata(fakulteler);
+          
+               anchor_main.getChildren().setAll(pane);
+   			
+   		
+ 					
+ 				} catch (Exception e) {
+ 					System.out.println(e.getMessage().toString());
+ 				}
+
+    }
+
+    @FXML
+    void btn_ogretimKaydi_OfMouse(MouseEvent event) {
+    	btn_ogretimKaydi.setStyle(" -fx-background-color: #55595a;");
+
+    }
+
+    @FXML
+    void btn_ogretimKaydi_OnMouse(MouseEvent event) {
+    	btn_ogretimKaydi.setStyle("-fx-background-color:#8B8E8E;");
+
+    }
+
+  
+
+  
 
     @FXML
     void initialize() {
-        assert btn_giris != null : "fx:id=\"btn_giris\" was not injected: check your FXML file 'AdminPanel.fxml'.";
-        assert btn_iptal != null : "fx:id=\"btn_iptal\" was not injected: check your FXML file 'AdminPanel.fxml'.";
-        assert rdio_kontrol != null : "fx:id=\"rdio_kontrol\" was not injected: check your FXML file 'AdminPanel.fxml'.";
-        assert txt_kulad != null : "fx:id=\"txt_kulad\" was not injected: check your FXML file 'AdminPanel.fxml'.";
-        assert txt_sifre != null : "fx:id=\"txt_sifre\" was not injected: check your FXML file 'AdminPanel.fxml'.";
-        
-        login.Fade_Trantition(0, 1, 1, 0, border_pane);
+        assert anchor_main != null : "fx:id=\"anchor_main\" was not injected: check your FXML file 'AdminPanel.fxml'.";
+        assert btn_dersKayıt != null : "fx:id=\"btn_dersKayıt\" was not injected: check your FXML file 'AdminPanel.fxml'.";
+        assert btn_dersProgrami != null : "fx:id=\"btn_dersProgrami\" was not injected: check your FXML file 'AdminPanel.fxml'.";
+        assert btn_ogrKayit != null : "fx:id=\"btn_ogrKayit\" was not injected: check your FXML file 'AdminPanel.fxml'.";
+        assert btn_ogretimKaydi != null : "fx:id=\"btn_ogretimKaydi\" was not injected: check your FXML file 'AdminPanel.fxml'.";
+      
 
     }
 
 }
-

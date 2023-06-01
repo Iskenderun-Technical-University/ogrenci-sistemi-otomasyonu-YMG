@@ -16,6 +16,14 @@ public class DersProgrami {
 		this.ogretim_elemani_id=ogretim_elemani_id;
 		
 	}
+	public DersProgrami(String saat,String ders_kodu,String ders_adi,String derslik) {
+		this.saat=saat;
+		this.ders_kodu=ders_kodu;
+		this.ders_adi=ders_adi;
+		this.derslik=derslik;
+		
+		
+	}
 
 	public String getSaat() {
 		return saat;
