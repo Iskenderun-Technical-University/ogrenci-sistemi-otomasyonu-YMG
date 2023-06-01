@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="720.0" prefWidth="1021.0" style="-fx-background-color: #A8AAAA;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="application.YeniDersProgramiController">
+   <children>
+      <ComboBox fx:id="combo_bolum" layoutX="91.0" layoutY="85.0" prefHeight="26.0" prefWidth="217.0" promptText="Bölüm" />
+      <ComboBox fx:id="combo_sinif" layoutX="401.0" layoutY="85.0" prefHeight="26.0" prefWidth="218.0" promptText="Sınıf" />
+      <ComboBox fx:id="combo_ogretim" layoutX="717.0" layoutY="85.0" prefHeight="26.0" prefWidth="218.0" promptText="Öğretim" />
+      <ComboBox fx:id="combo_saat1" layoutX="91.0" layoutY="296.0" prefHeight="26.0" prefWidth="68.0" promptText="Saat" />
+      <Label layoutX="91.0" layoutY="252.0" text="Ders Başlangıç Saati">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="combo_dk1" layoutX="166.0" layoutY="296.0" prefHeight="26.0" prefWidth="75.0" promptText="Dk." />
+      <ComboBox fx:id="combo_dersAdi" layoutX="90.0" layoutY="160.0" prefHeight="26.0" prefWidth="218.0" promptText="Ders Adı" />
+      <ComboBox fx:id="combo_haftanınGünü" layoutX="401.0" layoutY="160.0" prefHeight="26.0" prefWidth="218.0" promptText="Haftanın Günü" />
+      <ComboBox fx:id="combo_saat2" layoutX="367.0" layoutY="294.0" prefHeight="26.0" prefWidth="68.0" promptText="Saat" />
+      <Label layoutX="366.0" layoutY="252.0" text="Ders Bitiş Saati">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="combo_dk2" layoutX="442.0" layoutY="294.0" prefHeight="26.0" prefWidth="75.0" promptText="Dk." />
+      <Button fx:id="btn_programEkle" layoutX="760.0" layoutY="295.0" mnemonicParsing="false" onAction="#btn_programEkle_Click" prefHeight="26.0" prefWidth="174.0" style="-fx-background-radius: 8 8 8 8;" text="Program Ekle">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
