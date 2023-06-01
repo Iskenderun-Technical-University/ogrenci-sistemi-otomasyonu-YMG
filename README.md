@@ -8,7 +8,8 @@
 ![durum](https://github.com/Iskenderun-Technical-University/ogrenci-sistemi-otomasyonu-YMG/assets/87149201/e8bf152c-22ec-41e1-a72a-da918949ab1d)
 
 
-![ilerleme](https://github.com/Iskenderun-Technical-University/ogrenci-sistemi-otomasyonu-YMG/assets/87149201/1a69ba7a-4ade-4288-bf1b-16e78ab3cdd5)
+![ilerleme](https://github.com/Iskenderun-Technical-University/ogrenci-sistemi-otomasyonu-YMG/assets/87149201/3db3bf2a-7e66-4205-8e62-3837afe75683)
+
 
 
 ------
