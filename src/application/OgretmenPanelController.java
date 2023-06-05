@@ -420,7 +420,7 @@ try {
         	 
 	    	 AnchorPane pane = sifre.load();
            
-           OgretmenSifreDegistirController ogsifre = new OgretmenSifreDegistirController();
+           OgretmenSifreDegistirController ogsifre = sifre.getController();
            ogsifre.id_Ata(ogretim_id);
            System.out.println(ogretim_id);
            
