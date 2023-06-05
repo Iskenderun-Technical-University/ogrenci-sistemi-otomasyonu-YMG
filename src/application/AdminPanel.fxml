@@ -37,6 +37,11 @@
                   <Font size="19.0" />
                </font>
             </Button>
+            <Button fx:id="btn_dersAcma" mnemonicParsing="false" onAction="#btn_dersAcma" onMouseEntered="#btn_dersAcma_OnMouse" onMouseExited="#btn_dersAcma_OfMouse" prefHeight="60.0" prefWidth="263.0" style="-fx-background-color: 0 0 0 64;" text="Ders Kayıt Açma" textFill="WHITE">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Button>
          </children>
       </VBox>
    </children>

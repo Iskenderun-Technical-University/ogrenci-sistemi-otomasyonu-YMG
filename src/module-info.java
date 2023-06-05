@@ -4,6 +4,8 @@ module OBS {
 	requires javafx.base;
 	requires transitive javafx.graphics;
 	requires java.sql;
+	requires mysql.connector.j;
+	
 
 	
 	

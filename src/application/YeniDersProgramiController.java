@@ -3,11 +3,15 @@ package application;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.Mysql.VeritabaniBaglanti;
+
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Alert.AlertType;
 
 public class YeniDersProgramiController {
 
@@ -46,12 +50,50 @@ public class YeniDersProgramiController {
 
     @FXML
     private ComboBox<Integer> combo_sinif;
+    
+    private int secilen_gun=0;
+    private String bas_saat="";
+    private String bit_saat="";
+    private VeritabaniBaglanti baglanti = new VeritabaniBaglanti();
+    private ObservableList<Dersler> ders;
+    private int der_id =0;
 
     @FXML
     void btn_programEkle_Click(ActionEvent event) {
            // girilen bilgiler veritabanına eklenecek
+    	
+    	if (combo_bolum.getSelectionModel().getSelectedItem()==null || combo_dersAdi.getSelectionModel().getSelectedItem()==null || combo_dk1.getSelectionModel().getSelectedItem()==null || combo_dk2.getSelectionModel().getSelectedItem()==null || combo_haftanınGünü.getSelectionModel().getSelectedItem()==null || combo_ogretim.getSelectionModel().getSelectedItem()==null || combo_saat1.getSelectionModel().getSelectedItem()==null || combo_saat2.getSelectionModel().getSelectedItem()==null || combo_sinif.getSelectionModel().getSelectedItem()==null ) {
+    		Alert alert = new Alert(AlertType.INFORMATION);
+    		alert.setTitle("Bilgilendirme");
+    		alert.setHeaderText("Boş Değer bırakılamaz");
+    		alert.setContentText("Lütfen Bilgilerin Hepsinin Seçimini Yapınız.");
+    		alert.showAndWait();
+		}
+    	else {
+			secilen_gun=combo_haftanınGünü.getSelectionModel().getSelectedIndex();
+			bas_saat = combo_saat1.getSelectionModel().getSelectedItem() + ":" + combo_dk1.getSelectionModel().getSelectedItem();
+			bit_saat = combo_saat2.getSelectionModel().getSelectedItem() + ":" + combo_dk2.getSelectionModel().getSelectedItem();
+			for(int  i=0;i<ders.size();i++) {
+		       if (ders.get(i).getDers_adı().equals(combo_dersAdi.getSelectionModel().getSelectedItem())) {
+				der_id=ders.get(i).getId();
+			}
+				
+			}
+			try {
+				String sql = "insert into ders_programi (bolum,sinif,ogretim,bas_saat,bit_saat,haftanin_gunu,ders_id) values (?,?,?,?,?,?,?)";
+				baglanti.Insert(sql, combo_bolum.getSelectionModel().getSelectedItem(), combo_sinif.getSelectionModel().getSelectedItem(), combo_ogretim.getSelectionModel().getSelectedItem(), bas_saat, bit_saat, secilen_gun,der_id);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+			Alert alert = new Alert(AlertType.INFORMATION);
+    		alert.setTitle("Bilgilendirme");
+    		alert.setHeaderText("İşlem Başarılı");
+    		alert.setContentText("Sisteme Yeni Ders Programı Eklendi");
+    		alert.showAndWait();
+			
+		}
     }
-
+    
     @FXML
     void initialize() {
         assert btn_programEkle != null : "fx:id=\"btn_programEkle\" was not injected: check your FXML file 'YeniDersProgrami.fxml'.";
@@ -115,6 +157,7 @@ public class YeniDersProgramiController {
    }
    
    public void ders_ata(ObservableList<Dersler> ders) {
+	   this.ders=ders;
 	   for(Dersler der : ders) {
 		   combo_dersAdi.getItems().add(der.getDers_adı());
 	   }

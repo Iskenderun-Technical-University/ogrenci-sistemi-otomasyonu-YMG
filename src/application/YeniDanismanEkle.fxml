@@ -20,7 +20,7 @@
          </font>
       </Button>
       <TextField fx:id="txt_sifre" layoutX="138.0" layoutY="121.0" prefHeight="26.0" prefWidth="194.0" promptText="Öğretmen Şifre" />
-      <TextField fx:id="txt_mail" editable="false" layoutX="413.0" layoutY="121.0" prefHeight="26.0" prefWidth="194.0" promptText="Öğretmen Mail" />
+      <TextField fx:id="txt_mail" layoutX="413.0" layoutY="121.0" prefHeight="26.0" prefWidth="194.0" promptText="Öğretmen Mail" />
       <TextArea fx:id="txt_area_adres" layoutX="138.0" layoutY="184.0" prefHeight="126.0" prefWidth="478.0" promptText="Öğretmen Adres" />
    </children>
 </AnchorPane>

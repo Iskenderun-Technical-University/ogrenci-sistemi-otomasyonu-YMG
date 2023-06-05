@@ -1,8 +1,9 @@
 package application;
 
 import java.net.URL;
+import java.sql.ResultSet;
 import java.util.ResourceBundle;
-
+import com.Mysql.VeritabaniBaglanti;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -52,22 +53,36 @@ public class OgrenciDersKayitController {
     private ComboBox<Integer> combo_ogrenci;
     
     private int ogrenci_num;
-    
     private int ogretmen_id;
     
+
+    
     private ObservableList<OgrenciDersOnaylama> liste;
+    private ObservableList<Ogrenci_Bilgi> ogr_bilgi;
+    private ObservableList<Dersler> dersler;
+    private VeritabaniBaglanti baglanti = new VeritabaniBaglanti();
+    
     
     @FXML
     void combo_ogrenci_Event(ActionEvent event) {
+    	liste = FXCollections.observableArrayList();
     	if (combo_ogrenci.getSelectionModel().getSelectedItem()!=null) {
     		ogrenci_num=combo_ogrenci.getSelectionModel().getSelectedItem();
     		
+    		String sql ="select ogrenci_bilgi.numara , ogrenci_bilgi.ad ,ogrenci_bilgi.soyad,dersler.ders_ad,ogrenci_ders.ders_durumu from ogrenci_ders,dersler,ogrenci_bilgi where ogrenci_ders.ogrenci_id=ogrenci_bilgi.id and ogrenci_ders.ders_id=dersler.id and ogrenci_ders.ders_durumu=2 and ogrenci_bilgi.numara="+String.valueOf(ogrenci_num);
+    		try {
+    			ResultSet dersdurumu = baglanti.VeriGetir(sql);
+    			while(dersdurumu.next()) {
+    				
+    				liste.add(new OgrenciDersOnaylama(ogrenci_num, dersdurumu.getString("ad"), dersdurumu.getString("soyad"), dersdurumu.getString("ders_ad")));
+    			}
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+    		tbl_onaylama.getItems().addAll(liste);
     		
     		
     		
-    		
-    		
-    		// seçilen numara ile ilgili bilgiler tableview e yazdırılacak
     		
 			
 		}
@@ -85,12 +100,16 @@ public class OgrenciDersKayitController {
     void btn_iptal_Click(ActionEvent event) {
     	
     	// seçilen derler sql update ile ders_durumu=1 olarak yeniden atanacak
-
+   
+      
+    
+     
     }
 
     @FXML
     void btn_onayla_Click(ActionEvent event) {
-    	
+    	String sql = "update ogrenci_ders set ders_durumu=3 where ogrenci_id=? and ders_id=?";
+    	 
     	if (combo_ogrenci.getSelectionModel().getSelectedItem()==null) {
     		
     		 Alert alert =new Alert(AlertType.INFORMATION);
@@ -103,12 +122,23 @@ public class OgrenciDersKayitController {
     	else {
     		
     		// onaylama butonuna basılan dersler sql ile update edilecek
+    	
+    		for (OgrenciDersOnaylama veri : liste) {
+				if (veri.getOnaylama().isSelected()) {
+					baglanti.Update(sql,getirOgrid(veri.getOgrNum()),getirDersid(veri.getDers_ismi()));
+				}
+			}
+    		 Alert alert =new Alert(AlertType.INFORMATION);
+    	     alert.setTitle("Başarılı");
+    	     alert.setHeaderText("İşlem Başarılı");
+    	     alert.setContentText("Öğrencilerin Dersleri Başarı İle Onaylandı.");
+    	     alert.showAndWait();
     	}
     	
         
 
     }
-   private boolean dublicate =false;
+   
 
     @FXML
     void initialize() {
@@ -128,46 +158,69 @@ public class OgrenciDersKayitController {
         column_onayla.setCellValueFactory(new PropertyValueFactory<>("onaylama"));
         
         
-        liste=FXCollections.observableArrayList();
-        liste.add(new OgrenciDersOnaylama(191919, "kara", "adbi", "adam"));
         
-        liste.add(new OgrenciDersOnaylama(191919, "gogtug", "abi", "ada"));
-        liste.add(new OgrenciDersOnaylama(191919, "kara", "adbi", "adam"));
-        liste.add(new OgrenciDersOnaylama(202020, "ömer", "ada", "Bişiler"));
-        liste.add(new OgrenciDersOnaylama(202020, "ömer", "ada", "Bişiler"));
-        liste.add(new OgrenciDersOnaylama(202020, "ömer", "ada", "Bişiler"));
-        
+        dersler=FXCollections.observableArrayList();
+        try {
+			ResultSet veritabani_dersler = baglanti.VeriGetir("select id,ders_ad from dersler");
+			while(veritabani_dersler.next()) {
+				dersler.add(new Dersler(veritabani_dersler.getInt("id"), veritabani_dersler.getString("ders_ad")));
+			}
+        	
+        	
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
       
         
         
-        combo_ogrenci.getItems().add(1);
+        
        
         
         
      // sql ile bilgilerin listeye atanması işlemi yapılacak
        
-       for (OgrenciDersOnaylama i : liste) {
-    	  if (kontrol(i)) {
-			combo_ogrenci.getItems().add(i.getOgrNum());
-		}
-
+      ogr_bilgi=FXCollections.observableArrayList();
+       try {
+    	   ResultSet ogrenci_numaralar = baglanti.VeriGetir("select id,numara from ogrenci_bilgi");
+    	   while(ogrenci_numaralar.next()) {
+    		   combo_ogrenci.getItems().add(ogrenci_numaralar.getInt("numara"));
+    		   ogr_bilgi.add(new Ogrenci_Bilgi(ogrenci_numaralar.getInt("id"), ogrenci_numaralar.getInt("numara")));
+    	   }
+		
+	} catch (Exception e) {
+		// TODO: handle exception
 	}
         
    }
     
-    
-    private boolean kontrol(OgrenciDersOnaylama a) {
-    	
-    	for(int i =0;i<combo_ogrenci.getItems().size();i++) {
-    		if (combo_ogrenci.getItems().get(i) == a.getOgrNum()) {
-				dublicate = Boolean.FALSE;
+    private int getirOgrid(int numara) {
+    	int id=0;
+    	for(int i = 0;i<ogr_bilgi.size();i++) {
+    		if (ogr_bilgi.get(i).getNum()==numara) {
+				id =ogr_bilgi.get(i).getId();
 			}
-    		else {
-    			dublicate = Boolean.TRUE;
-    		}
     	}
-    	return dublicate;
- }
+    	
+    	
+    	return id;
+    	
+    	}
+    private int getirDersid(String ders_adi) {
+    	
+    	
+    	int id1=0;
+    	for(int i = 0;i<dersler.size();i++) {
+    		if (dersler.get(i).getDers_adı().equals(ders_adi)) {
+				id1 =dersler.get(i).getId();
+			}
+    	}
+    	
+    	
+    	return id1;
+    	
+    	}
+    
+  
     
     
     public void ogretim_uyesi_id(int id) {
@@ -177,6 +230,34 @@ public class OgrenciDersKayitController {
     
     }
     
-    
+    class Ogrenci_Bilgi {
+    	private int id;
+    	private int num;
+    	
+    	public Ogrenci_Bilgi(int id, int numara) {
+			this.id=id;
+			this.num=numara;
+			
+		}
 
+		public int getId() {
+			return id;
+		}
+
+		public void setId(int id) {
+			this.id = id;
+		}
+
+		public int getNum() {
+			return num;
+		}
+
+		public void setNum(int num) {
+			this.num = num;
+		}
+    	
+    	
+    	
+    }
+ 
 

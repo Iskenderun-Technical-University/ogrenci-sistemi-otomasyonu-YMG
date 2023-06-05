@@ -2,15 +2,17 @@ package application;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
+import com.Mysql.VeritabaniBaglanti;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class OgretmenNotGirisController {
@@ -74,14 +76,71 @@ public class OgretmenNotGirisController {
     
     @FXML
     void btn_notlarıGir_Click(ActionEvent event) {
-
+         
+         String sql1="update ogrenci_ders set vize=?,final=?,butunleme=?,sonuc=?,harf_notu=? where id="+sec_id;
+         String sql2="update ogrenci_ders set vize=?,final=?,butunleme=?,sonuc=? where id="+sec_id;
+         if (combo_harfnotu.getSelectionModel().getSelectedItem()==null) {
+        	 try {
+      			baglanti.Update(sql2, txt_vize.getText(), txt_final.getText(), txt_but.getText(), txt_sonuc.getText());
+      		} catch (Exception e) {
+      			// TODO: handle exception
+      		}
+		}
+         else {
+        	 try {
+     			baglanti.Update(sql1, txt_vize.getText(), txt_final.getText(), txt_but.getText(), txt_sonuc.getText(), combo_harfnotu.getSelectionModel().getSelectedItem());
+     		} catch (Exception e) {
+     			// TODO: handle exception
+     		}
+		}
+         Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setHeaderText("İşlem Başarılı");
+			alert.setTitle("Ders Notu Güncellendi");
+			alert.setContentText("Ders Notu Başarı ile Güncellendi");
+			alert.showAndWait();
     }
 
     @FXML
     void btn_sistemekaydet_Click(ActionEvent event) {
-
+    	 String sql1="update ogrenci_ders set vize=?,final=?,butunleme=?,sonuc=?,harf_notu=?,ders_durumu=4 where id="+sec_id;
+    	 if (combo_harfnotu.getSelectionModel().getSelectedItem()==null) {
+    		 Alert alert = new Alert(AlertType.INFORMATION);
+    		 alert.setHeaderText("Dikkat");
+ 			alert.setTitle("Harf Notu Seçimi");
+ 			alert.setContentText("harf Notu Seçmeden Ders Sonucunun Tamanını Sisteme Kaydedemezsiniz.");
+ 			alert.showAndWait();
+		}
+    	 else {
+    		 if (txt_vize.getText().equals("Girilmedi") || txt_final.getText().equals("Girilmedi") || txt_sonuc.getText().equals("Girilmedi")|| txt_but.getText().equals("Girilmedi")) {
+        		 Alert alert = new Alert(AlertType.INFORMATION);
+        		 alert.setHeaderText("Dikkat");
+     			alert.setTitle("Notlar Girilmedi");
+     			alert.setContentText("Öğrencilerin Notlarının tamamı Açıklanmadan Bilgiler Sisteme Kaydedilmez. /n Sisteme Kaydet Butonu Dönem Sonu İçin Kullanılır.");
+     			alert.showAndWait();
+    		}
+    		 else {
+    			 try {
+    	     			baglanti.Update(sql1, txt_vize.getText(), txt_final.getText(), txt_but.getText(), txt_sonuc.getText(), combo_harfnotu.getSelectionModel().getSelectedItem());
+    	     		} catch (Exception e) {
+    	     			 Alert alert = new Alert(AlertType.INFORMATION);
+    	        		 alert.setHeaderText("Tamamlandı");
+    	     			alert.setTitle("Bilgiler başarı İle Sisteme kaydedildi.");
+    	     			alert.setContentText("Öğrencinin Tüm Bilgileri Sisteme Kaydedildi.");
+    	     			alert.showAndWait();
+    	     		}
+			}
+		}
+    	
+    	 
+    	 
     }
     
+     private int sec_ogrnum=0;
+     private String sec_ders="";
+     private int sec_id=0;
+     private VeritabaniBaglanti baglanti = new VeritabaniBaglanti();
+     private int ogr_id;
+     private int ders_id;
     
 
     @FXML
@@ -122,11 +181,24 @@ public class OgretmenNotGirisController {
                 txt_final.setText(tbt_notlar.getSelectionModel().getSelectedItem().getFinal_sinav());
                 txt_but.setText(tbt_notlar.getSelectionModel().getSelectedItem().getButunleme());
                 txt_sonuc.setText(tbt_notlar.getSelectionModel().getSelectedItem().getSonuc());
-                
+                sec_ders=newSelection.getDers_adi();
+                sec_ogrnum=newSelection.getOgrenci_numara();
+                ogr_id = baglanti.id_Getir("select id from ogrenci_bilgi where numara=? and numara=?", sec_ogrnum, sec_ogrnum);
+                ders_id=baglanti.id_Getir("select id from dersler where ders_ad=?", sec_ders);
+                sec_id=baglanti.id_Getir("select id from ogrenci_ders where ogrenci_id=? and ders_id=?", ogr_id, ders_id);
             }
         });
         
-       
+      combo_harfnotu.getItems().add("AA");
+      combo_harfnotu.getItems().add("BA");
+      combo_harfnotu.getItems().add("BB");
+      combo_harfnotu.getItems().add("CB");
+      combo_harfnotu.getItems().add("CC");
+      combo_harfnotu.getItems().add("DC");
+      combo_harfnotu.getItems().add("DD");
+      combo_harfnotu.getItems().add("FF");
+      combo_harfnotu.getItems().add("Girilmedi");
+      
         
     }
     

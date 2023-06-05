@@ -2,7 +2,6 @@ package application;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
@@ -145,12 +144,12 @@ public class DersProgramiController {
         assert tbl_sali_saat != null : "fx:id=\"tbl_sali_saat\" was not injected: check your FXML file 'DersProgramı.fxml'.";
         
         
+    
         
         
-        
-        
-       
-       
+      
+    	
+	
         
         
         
@@ -194,5 +193,7 @@ public class DersProgramiController {
        tbl_persembe.getItems().setAll(persembe);
        tbl_cuma.getItems().setAll(cuma);
 	}
+    
+    
 
 }

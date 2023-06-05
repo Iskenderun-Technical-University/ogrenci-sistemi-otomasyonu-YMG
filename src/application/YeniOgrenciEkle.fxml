@@ -24,7 +24,7 @@
          </font>
       </Button>
       <TextField fx:id="txt_OgrTc" layoutX="138.0" layoutY="121.0" prefHeight="26.0" prefWidth="194.0" promptText="Öğrenci Tc" />
-      <TextField fx:id="txt_OgrSifre" editable="false" layoutX="413.0" layoutY="121.0" prefHeight="26.0" prefWidth="194.0" promptText="Öğrenci Şifre" />
+      <TextField fx:id="txt_OgrSifre" layoutX="413.0" layoutY="121.0" prefHeight="26.0" prefWidth="194.0" promptText="Öğrenci Şifre" />
       <TextField fx:id="txt_OgrMail" layoutX="704.0" layoutY="121.0" prefHeight="26.0" prefWidth="194.0" promptText="Öğrenci Mail" />
       <TextArea fx:id="txt_area_OgrAdres" layoutX="138.0" layoutY="184.0" prefHeight="126.0" prefWidth="478.0" promptText="Öğrenci Adres" />
    </children>

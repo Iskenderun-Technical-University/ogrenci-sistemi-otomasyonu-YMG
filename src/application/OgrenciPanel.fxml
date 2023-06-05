@@ -46,11 +46,6 @@
                   <Font size="15.0" />
                </font>
             </Button>
-            <Button fx:id="btn_program_dersleri" mnemonicParsing="false" onAction="#btn_program_dersleri_Click" onMouseEntered="#btn_program_dersleri_OnMouse" onMouseExited="#btn_program_dersleri_OffMouse" prefHeight="34.0" prefWidth="198.0" style="-fx-background-color: #55595a; -fx-background-radius: 0 20 0 0;" text="Program Dersleri" textFill="WHITE">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Button>
             <Button fx:id="btn_ders_programı" mnemonicParsing="false" onAction="#btn_ders_programı_Click" onMouseEntered="#btn_ders_programı_OnMouse" onMouseExited="#btn_ders_programı_OffMouse" prefHeight="34.0" prefWidth="198.0" style="-fx-background-color: #55595a; -fx-background-radius: 0 20 0 0;" text="Ders Programı" textFill="WHITE">
                <font>
                   <Font size="15.0" />

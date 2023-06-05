@@ -1,12 +1,18 @@
 package application;
 
 import java.net.URL;
+import java.sql.ResultSet;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import com.Mysql.VeritabaniBaglanti;
 
 public class YeniDersKayitController {
 
@@ -51,13 +57,57 @@ public class YeniDersKayitController {
 
     @FXML
     private TextField txt_derslik;
+    
+    private ObservableList<Danisman> danismanlar;
+    
+    private VeritabaniBaglanti baglanti =new VeritabaniBaglanti();
 
     @FXML
     void btn_kaydet_Click(ActionEvent event) {
     	
-    	// alınan degerler veritabanına gönderilecek
+    	if (txt_DersAdi.getText()=="" || txt_dersKodu.getText()=="" ||  txt_derslik.getText()=="") {
+    		Alert alert = new Alert(AlertType.INFORMATION);
+    		alert.setTitle("Bilgilendirme");
+    		alert.setHeaderText("Boş Değer bırakılamaz");
+    		alert.setContentText("Lütfen Ders Bilgileri Boş Bırakmayınız.");
+    		alert.showAndWait();
+			
+		}
+    	else {
+			if (combo_akts.getSelectionModel().getSelectedItem()== null || combo_kredi.getSelectionModel().getSelectedItem()==null || combo_labSaat.getSelectionModel().getSelectedItem()==null || combo_ogretimUyesi.getSelectionModel().getSelectedItem()==null || combo_sinif.getSelectionModel().getSelectedItem()==null || combo_teoSaat.getSelectionModel().getSelectedItem()==null || combo_uygSaat.getSelectionModel().getSelectedItem()==null || combo_zorunlulul.getSelectionModel().getSelectedItem()==null) {
+				Alert alert = new Alert(AlertType.INFORMATION);
+	    		alert.setTitle("Bilgilendirme");
+	    		alert.setHeaderText("Boş Değer bırakılamaz");
+	    		alert.setContentText("Lütfen Seçilmesi Gereken Yerleri Boş Bırakmayınız.");
+	    		alert.showAndWait();
+			}
+			else {
+				String[] ad_soyad = combo_ogretimUyesi.getSelectionModel().getSelectedItem().split(" ");
+				String ad = ad_soyad[0];
+				String soyad = ad_soyad[1];
+				int  id = 0;
+				
+				for(int i=0;i<danismanlar.size();i++) {
+					if (danismanlar.get(i).getDanısman_Ad().equals(ad) && danismanlar.get(i).getDanısman_SoyAd().equals(soyad)) {
+						id = danismanlar.get(i).getId();
+					}
+				}
+				String  sql = "insert into dersler (ders_kodu,derslik,ders_ad,sinif,uyg_saat,lab_saat,teo_saat,zorunlu ,kredi,akts,ogretim_uyesi_id) values (?,?,?,?,?,?,?,?,?,?,?) ";
+				baglanti.Insert(sql, txt_dersKodu.getText(), txt_derslik.getText(), txt_DersAdi.getText(), combo_sinif.getSelectionModel().getSelectedItem(), combo_uygSaat.getSelectionModel().getSelectedItem(), combo_labSaat.getSelectionModel().getSelectedItem(), combo_teoSaat.getSelectionModel().getSelectedItem(), combo_zorunlulul.getSelectionModel().getSelectedItem(), combo_kredi.getSelectionModel().getSelectedItem(), combo_akts.getSelectionModel().getSelectedItem(), id);
+			}
+			Alert alert = new Alert(AlertType.INFORMATION);
+    		alert.setTitle("Bilgilendirme");
+    		alert.setHeaderText("Başarılı");
+    		alert.setContentText("Ders Başarıyla Kaydedildi.");
+    		alert.showAndWait();
+		}
 
     }
+    
+    
+    
+    
+    
 
     @FXML
     void initialize() {
@@ -79,9 +129,12 @@ public class YeniDersKayitController {
         	
         	if (i<11) {
 				combo_kredi.getItems().add(i);
-				combo_labSaat.getItems().add(i);
-				combo_teoSaat.getItems().add(i);
-				combo_uygSaat.getItems().add(i);
+				
+			}
+        	if (i<12) {
+        		combo_labSaat.getItems().add(i-1);
+				combo_teoSaat.getItems().add(i-1);
+				combo_uygSaat.getItems().add(i-1);
 			}
         	
         	if (i<6) {
@@ -92,13 +145,37 @@ public class YeniDersKayitController {
         combo_zorunlulul.getItems().addAll("Z","S");
         
      // veritabanından ogretim üyesi ad soyad ve id çekilecek  ad soyad birleştirilip ogretim uyesi comboboxına atanacak
-        combo_ogretimUyesi.getItems().add("Göktuğ Kaya");
-        combo_ogretimUyesi.getItems().add("Ömer İmre");
-        combo_ogretimUyesi.getItems().add("Ömer Doğan");
         
+        this.danismanlar=FXCollections.observableArrayList();
+        
+        
+        try {
+        	VeritabaniBaglanti baglan = new VeritabaniBaglanti();
+            ResultSet danisman = baglan.VeriGetir("select id,ad,soyad from ogretim_uyesi");
+            while(danisman.next()) {
+            	danismanlar.add(new Danisman(danisman.getInt("id"), danisman.getString("ad"), danisman.getString("soyad")));
+            }
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+        
+        
+        for (Danisman danisman : danismanlar) {
+        	combo_ogretimUyesi.getItems().add(danisman.getDanısman_Ad()+" "+danisman.getDanısman_SoyAd());
+		}
+    	 
     }
     
-    
-    
+   /* public void danısman_ata(ObservableList<Danisman> danismanlar) {
+    	combo_ogretimUyesi=new ComboBox<>();
+    	this.danismanlar=FXCollections.observableArrayList();
+    	this.danismanlar=danismanlar;
+    	  for(Danisman dan : danismanlar) {
+         	combo_ogretimUyesi.getItems().add(dan.getDanısman_Ad()+" "+dan.getDanısman_SoyAd());
+         	 
+         	 
+          }
+    }
+    */
 
 }

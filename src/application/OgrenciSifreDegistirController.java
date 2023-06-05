@@ -1,8 +1,9 @@
 package application;
 
 import java.net.URL;
+import java.sql.ResultSet;
 import java.util.ResourceBundle;
-
+import com.Mysql.VeritabaniBaglanti;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -40,6 +41,9 @@ public class OgrenciSifreDegistirController {
     private String eskisifre;
     private String yenisifre;
     private String yenisfretekrar;
+    private int ogr_id;
+    private VeritabaniBaglanti baglanti = new VeritabaniBaglanti();
+    private MD5_Sifrele sifrele =  new MD5_Sifrele();
     
     
     @FXML
@@ -60,11 +64,17 @@ public class OgrenciSifreDegistirController {
 		}
           else {
         	  if (yenisifre.equals(yenisfretekrar)) {
-            	  if (eskisifre_yeni.equals(eskisifre)) {
+            	  if (sifrele.getMd5(eskisifre_yeni).equals(eskisifre)) {
     				
             		  if (!eskisifre_yeni.equals(yenisifre)) {
     					
             			  // sorgu ile çağırılıp buradaki değerler atanacak
+            			  baglanti.Update("update ogrenci_bilgi set sifre=? where id=?", sifrele.getMd5(yenisifre), ogr_id);
+               			 Alert alert =new Alert(AlertType.INFORMATION);
+                  		  alert.setTitle("Başarılı");
+                            alert.setHeaderText("Şifre Değiştirildi");
+                            alert.setContentText("Şifreniz başarılı Bir Şekilde Değşiştirildi.");
+                            alert.showAndWait();
             			  
             			  
             			  
@@ -125,14 +135,26 @@ public class OgrenciSifreDegistirController {
         		
         	}
 		});
-        eski_sifre("a");
         
+       
+        
+    
     }
     
-    public void eski_sifre(String sifre) {
-    	this.eskisifre=new String(sifre);
+    public void id_Ata(int id) {
+    	this.ogr_id=id;
+    	
+    	 try {
+ 			ResultSet sifre_getir = baglanti.VeriGetir("Select sifre from ogrenci_bilgi where id="+ogr_id);
+ 			if (sifre_getir.next()) {
+ 				eskisifre=sifre_getir.getString("sifre");
+ 			}
+ 		} catch (Exception e) {
+ 			// TODO: handle exception
+ 		}
+    	 
     }
-    
+   
     
 
 }

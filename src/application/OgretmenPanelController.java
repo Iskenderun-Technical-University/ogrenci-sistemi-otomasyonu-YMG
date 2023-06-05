@@ -1,8 +1,10 @@
 package application;
 
 import java.net.URL;
+import java.sql.ResultSet;
 import java.util.ResourceBundle;
 
+import com.Mysql.VeritabaniBaglanti;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -68,6 +70,11 @@ public class OgretmenPanelController {
 
     @FXML
     private VBox pnl_ogrenci;
+    
+    private int ogretim_id;
+    
+    
+    private VeritabaniBaglanti baglanti =  new VeritabaniBaglanti();
 
     @FXML
     void btn_bilgiGoruntule_Click(ActionEvent event) {
@@ -79,14 +86,19 @@ try {
          	
          	 AnchorPane pane = bilgi.load();
               OgretmenBilgiGoruntuleController bilgiler= bilgi.getController();
-             bilgiler.bilgi_yaz(new OgretmenBilgi("aa", null, null, null, null, null, null));
+              
+              ResultSet veriler = baglanti.VeriGetir("select ad,soyad,kullanici_ad,bolum,fakulte,mail,adres from ogretim_uyesi where id="+String.valueOf(ogretim_id));
+              if (veriler.next()) {
+            	  bilgiler.bilgi_yaz(new OgretmenBilgi(veriler.getString("ad"), veriler.getString("soyad"), veriler.getString("kullanici_ad"), veriler.getString("bolum"),veriler.getString("fakulte"), veriler.getString("mail"), veriler.getString("adres")));
+			}
+             
               
              anchor_main.getChildren().setAll(pane);
  			
  		
 				
 			} catch (Exception e) {
-				// TODO: handle exception
+				System.out.println(e.getMessage().toString());
 			}
 
 
@@ -107,21 +119,45 @@ try {
 
     }
    
-     ObservableList<DersProgrami> liste;
+     ObservableList<DersProgrami> pazartesi;
+     ObservableList<DersProgrami> sali;
+     ObservableList<DersProgrami> carsamba;
+     ObservableList<DersProgrami> persembe;
+     ObservableList<DersProgrami> cuma;
     @FXML
     void btn_ders_programi_Click(ActionEvent event) {
-    	liste=FXCollections.observableArrayList();
-        liste.add(new DersProgrami("9:30 - 10:20", "BM-102", "Bilgi Ağ", "A-102"));
-        liste.add(new DersProgrami("10:30 - 11:20", "BM-102", "Bilgi Ağ", "A-102"));
+    	pazartesi=FXCollections.observableArrayList();
+    	sali=FXCollections.observableArrayList();
+    	carsamba=FXCollections.observableArrayList();
+    	persembe=FXCollections.observableArrayList();
+    	cuma=FXCollections.observableArrayList();
+        
     	
 try {
-         	
-         	
+         	ResultSet dersprogrami=baglanti.VeriGetir("select ders_ad,ders_kodu,derslik,bas_saat,bit_saat,haftanin_gunu from ders_programi,dersler where ders_programi.ders_id=dersler.id and dersler.ogretim_uyesi_id="+ogretim_id);
+         	while(dersprogrami.next()) {
+         		if (dersprogrami.getInt("haftanin_gunu")==0) {
+					pazartesi.add(new DersProgrami(dersprogrami.getString("bas_saat")+" - "+dersprogrami.getString("bit_saat"), dersprogrami.getString("ders_kodu"), dersprogrami.getString("ders_ad"), dersprogrami.getString("derslik")));
+				}
+         		if (dersprogrami.getInt("haftanin_gunu")==1) {
+					sali.add(new DersProgrami(dersprogrami.getString("bas_saat")+" - "+dersprogrami.getString("bit_saat"), dersprogrami.getString("ders_kodu"), dersprogrami.getString("ders_ad"), dersprogrami.getString("derslik")));
+				}
+         		if (dersprogrami.getInt("haftanin_gunu")==2) {
+					carsamba.add(new DersProgrami(dersprogrami.getString("bas_saat")+" - "+dersprogrami.getString("bit_saat"), dersprogrami.getString("ders_kodu"), dersprogrami.getString("ders_ad"), dersprogrami.getString("derslik")));
+				}
+         		if (dersprogrami.getInt("haftanin_gunu")==3) {
+					persembe.add(new DersProgrami(dersprogrami.getString("bas_saat")+" - "+dersprogrami.getString("bit_saat"), dersprogrami.getString("ders_kodu"), dersprogrami.getString("ders_ad"), dersprogrami.getString("derslik")));
+				}
+         		if (dersprogrami.getInt("haftanin_gunu")==4) {
+					cuma.add(new DersProgrami(dersprogrami.getString("bas_saat")+" - "+dersprogrami.getString("bit_saat"), dersprogrami.getString("ders_kodu"), dersprogrami.getString("ders_ad"), dersprogrami.getString("derslik")));
+				}
+         		
+         	}
          	FXMLLoader ders_programi = new FXMLLoader(getClass().getResource("OgretmenDersProgrami.fxml"));
          	
          	 AnchorPane pane = ders_programi.load();
               OgretmenDersProgramiController ders= ders_programi.getController();
-             ders.Program_Ata(liste, liste, liste, liste, liste);
+             ders.Program_Ata(pazartesi, sali, carsamba, persembe, cuma);
               
              anchor_main.getChildren().setAll(pane);
  			
@@ -295,8 +331,12 @@ try {
     	
 try {
          	a = FXCollections.observableArrayList();
-         	a.add(new OgretmenNotGiris(0, "15", "afad", "4684", "56468", "afsasdasd", "faadf", "asdasasdasd", "afdasd"));
-         	a.add(new OgretmenNotGiris(0, "59+", "afad", "4684", "56468", "afsd", "faf", "asdasd", "afdasd"));
+         	
+         	ResultSet notlar = baglanti.VeriGetir("select ogrenci_bilgi.numara,ogrenci_bilgi.ad,ogrenci_bilgi.soyad,dersler.ders_ad,vize,final,butunleme,sonuc,harf_notu from dersler,ogrenci_bilgi,ogrenci_ders where ogrenci_ders.ogrenci_id=ogrenci_bilgi.id and ogrenci_ders.ders_id=dersler.id and ogrenci_ders.ders_durumu=3 and dersler.ogretim_uyesi_id="+String.valueOf(ogretim_id));
+         	while(notlar.next()) {
+         		a.add(new OgretmenNotGiris(notlar.getInt("numara"), notlar.getString("ad"), notlar.getString("soyad"), notlar.getString("ders_ad"), notlar.getString("vize"), notlar.getString("final"), notlar.getString("butunleme"), notlar.getString("sonuc"), notlar.getString("harf_notu")));
+         		
+         	}
          	
          	FXMLLoader ogrenci = new FXMLLoader(getClass().getResource("OgretmenNotGiris.fxml"));
          	
@@ -337,11 +377,12 @@ try {
 try {
          	
          	
-         	FXMLLoader ogrenci = new FXMLLoader(getClass().getResource("OgretmenDanismanGetir.fxml"));
+         	FXMLLoader dan = new FXMLLoader(getClass().getResource("OgretmenDanismanGetir.fxml"));
          	
-         	 AnchorPane pane = ogrenci.load();
-           //  OgretmenDanismanGetirController bilgiler = ogrenci.getController();
-            // bilgiler.deger_Ata(null);
+         	 AnchorPane pane = dan.load();
+         
+             OgretmenDanismanGetirController bil = dan.getController();
+             bil.deger_Ata(ogretim_id);
               
              anchor_main.getChildren().setAll(pane);
  			
@@ -376,10 +417,15 @@ try {
 	    	
 	    	FXMLLoader sifre = new FXMLLoader(getClass().getResource("OgretmenSifreDegistir.fxml"));
          	
-        	 AnchorPane pane = sifre.load();
+        	 
+	    	 AnchorPane pane = sifre.load();
            
+           OgretmenSifreDegistirController ogsifre = new OgretmenSifreDegistirController();
+           ogsifre.id_Ata(ogretim_id);
+           System.out.println(ogretim_id);
            
-             
+          
+          
             anchor_main.getChildren().setAll(pane);
 			
 		
@@ -409,12 +455,13 @@ try {
     @FXML
     void btn_verilendersler_Click(ActionEvent event) {
     	ab= FXCollections.observableArrayList();
-    	ab.add(new DersBilgileri("asd", "des1", 1, 2));
-    	ab.add(new DersBilgileri("adad", "hhh", 5, 2));
+    	
    	
    try {
-         	
-         	
+         	ResultSet icerik = baglanti.VeriGetir("select ders_ad,ders_kodu,kredi,sinif from dersler where ogretim_uyesi_id="+String.valueOf(ogretim_id));
+         	while(icerik.next()) {
+         		ab.add(new DersBilgileri(icerik.getString("ders_kodu"), icerik.getString("ders_ad"), icerik.getInt("sinif"), icerik.getInt("kredi")));
+         	}
          	FXMLLoader dersler = new FXMLLoader(getClass().getResource("OgretmenVerilenDersler.fxml"));
          	
          	 AnchorPane pane = dersler.load();
@@ -506,6 +553,14 @@ try {
         assert pnl_kullanici != null : "fx:id=\"pnl_kullanici\" was not injected: check your FXML file 'OgretmenPanel.fxml'.";
         assert pnl_ogrenci != null : "fx:id=\"pnl_ogrenci\" was not injected: check your FXML file 'OgretmenPanel.fxml'.";
 
+    }
+    
+    public void setOgretim_id(int ogretim_id) {
+		this.ogretim_id=ogretim_id;
+	}
+    
+    public int getOgretim_id() {
+    	return this.ogretim_id;
     }
 
 }

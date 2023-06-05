@@ -119,28 +119,28 @@ public class OgrenciTranskriptController {
 			}
 			*/
 			
-			if(dersler.get(i).getHarf_not()=="AA") {
+			if(dersler.get(i).getHarf_not().equals("AA")) {
 				harf_sayisal[i]=4;
 			}
-			else if (dersler.get(i).getHarf_not()=="BA") {
+			else if (dersler.get(i).getHarf_not().equals("BA")) {
 				harf_sayisal[i]=3.5;
 			}
-			else if (dersler.get(i).getHarf_not()=="BB") {
+			else if (dersler.get(i).getHarf_not().equals("BB")) {
 				harf_sayisal[i]=3;
 			}
-			else if (dersler.get(i).getHarf_not()=="CB") {
+			else if (dersler.get(i).getHarf_not().equals("CB")) {
 				harf_sayisal[i]=2.5;
 			}
-			else if (dersler.get(i).getHarf_not()=="CC") {
+			else if (dersler.get(i).getHarf_not().equals("CC")) {
 				harf_sayisal[i]=2;
 			}
-			else if (dersler.get(i).getHarf_not()=="DC") {
+			else if (dersler.get(i).getHarf_not().equals("DC")) {
 				harf_sayisal[i]=1.5;
 			}
-			else if (dersler.get(i).getHarf_not()=="DD") {
+			else if (dersler.get(i).getHarf_not().equals("DD")) {
 				harf_sayisal[i]=1;
 			}
-			else if (dersler.get(i).getHarf_not()=="FF") {
+			else if (dersler.get(i).getHarf_not().equals("FF")) {
 				harf_sayisal[i]=0;
 			}
 			
@@ -150,11 +150,14 @@ public class OgrenciTranskriptController {
 		}
 		for(int i =0;i<dersler.size();i++) {
 			kredi_harf+=dersler.get(i).getKredi()*harf_sayisal[i];
+			System.out.println(harf_sayisal[i]);
+			
 			
 		}
 		
 		lbl_topakts.setText(String.valueOf(top_akts));
 		lbl_topkredi.setText(String.valueOf(top_kredi));
+		
 		lbl_gno.setText(String.valueOf(kredi_harf/top_kredi));
 		
 		tbl_notlar.setItems(dersler);

@@ -1,7 +1,10 @@
 package application;
 
 import java.net.URL;
+import java.sql.ResultSet;
 import java.util.ResourceBundle;
+
+import com.Mysql.VeritabaniBaglanti;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -39,11 +42,14 @@ public class OgrenciMailDegistirController {
     private String eskimail_yeni;
     private String yeni_mail;
     private String yenimail_tekrar;
-    private String eskimail="a";
+    private String eskimail;
+    private int ogr_id;
+    private VeritabaniBaglanti baglanti =new VeritabaniBaglanti();
     
 
     @FXML
     void btn_kaydet_Click(ActionEvent event) {
+    	
     	eskimail_yeni =txt_eskimail_yeni.getText();
     	yeni_mail=txt_yenimail.getText();
     	yenimail_tekrar=txt_yenimailtekrar.getText();
@@ -63,7 +69,13 @@ public class OgrenciMailDegistirController {
    					
            			  // sorgu ile çağırılıp buradaki değerler atanacak
            			  
-           			  
+           			  baglanti.Update("update ogrenci_bilgi set mail=? where id=?", yeni_mail, ogr_id);
+            			 Alert alert =new Alert(AlertType.INFORMATION);
+               		  alert.setTitle("Başarılı");
+                         alert.setHeaderText("Mail Değiştirildi");
+                         alert.setContentText("Mailiniz başarılı Bir Şekilde Değşiştirildi.");
+                         alert.showAndWait();
+         			  
            			  
    				}
            		  else {
@@ -118,6 +130,20 @@ public class OgrenciMailDegistirController {
         		
         	
 		});
+    }
+    
+    public void id_Ata(int id) {
+    	this.ogr_id=id;
+    	
+    	 try {
+ 			ResultSet sifre_getir = baglanti.VeriGetir("Select mail from ogrenci_bilgi where id="+ogr_id);
+ 			if (sifre_getir.next()) {
+ 				eskimail=sifre_getir.getString("mail");
+ 			}
+ 		} catch (Exception e) {
+ 			// TODO: handle exception
+ 		}
+    	 
     }
 
 }

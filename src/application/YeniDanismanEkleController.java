@@ -2,14 +2,17 @@ package application;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
+
+import com.Mysql.VeritabaniBaglanti;
 
 public class YeniDanismanEkleController {
 
@@ -45,11 +48,56 @@ public class YeniDanismanEkleController {
 
     @FXML
     private TextField txt_soyad;
+    
+
 
     @FXML
     void btn_kaydet_Click(ActionEvent event) {
     	
-    	//veritabanına alınan değerler atanacak
+    	if (txt_ad.getText()=="" || txt_soyad.getText()=="" || txt_sifre.getText()=="" || txt_kul_ad.getText()==""||txt_area_adres.getText()=="" || txt_mail.getText()=="") {
+    		Alert alert =new Alert(AlertType.INFORMATION);
+    	     alert.setTitle("Bilgi Eksikliği");
+    	     alert.setHeaderText("Boş Bırakılamaz");
+    	     alert.setContentText("Lütfen Bilgileri Boş Bırakmayınız. ");
+    	     alert.showAndWait();
+		}
+    	else {
+			if (combo_Bolum.getSelectionModel().getSelectedItem()==null || combo_Fakulte.getSelectionModel().getSelectedItem()==null) {
+				Alert alert =new Alert(AlertType.INFORMATION);
+				alert.setTitle("Bilgi Eksikliği");
+	    	     alert.setHeaderText("Boş Bırakılamaz");
+	    	     alert.setContentText("Lütfen Bilgileri Seçiniz ");
+	    	     alert.showAndWait();
+			}
+			else {
+				if (txt_mail.getText().contains("@iste.edu.tr")) {
+					//veritabanına alınan değerler atanacak
+			    	VeritabaniBaglanti baglanti = new VeritabaniBaglanti();
+			    	MD5_Sifrele sifrele= new MD5_Sifrele();
+			    	String sifre=sifrele.getMd5(txt_sifre.getText());
+			    	String sql = "insert into ogretim_uyesi (`ad`, `soyad`, `kullanici_ad`, `sifre`, `fakulte`, `bolum`, `mail`, `adres`) VALUES (?,?,?,?,?,?,?,?)";
+			    	baglanti.Insert(sql, txt_ad.getText(), txt_soyad.getText(), txt_kul_ad.getText(), sifrele.getMd5(sifre), combo_Fakulte.getSelectionModel().getSelectedItem(), combo_Bolum.getSelectionModel().getSelectedItem(), txt_mail.getText(), txt_area_adres.getText());
+			    	Alert alert =new Alert(AlertType.INFORMATION);
+					alert.setTitle("Başarılı");
+		    	     alert.setHeaderText("İşlem Başarılı");
+		    	     alert.setContentText("Bilgiler Başarı İle Sisteme Kaydedildi.");
+		    	     alert.showAndWait();
+			    	
+				}
+				else {
+					Alert alert =new Alert(AlertType.INFORMATION);
+					alert.setTitle("Bilgi Eksikliği");
+		    	     alert.setHeaderText("Format Uyumsuzluğu");
+		    	     alert.setContentText(" Mail Adresi @iste.edu.tr ile Bitmelidir.  ");
+		    	     alert.showAndWait();
+				}
+				
+				
+				
+			}
+		}
+    	
+    	
 
     }
     

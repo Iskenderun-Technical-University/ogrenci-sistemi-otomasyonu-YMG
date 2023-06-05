@@ -20,7 +20,7 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <Button layoutX="668.0" layoutY="338.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="266.0" style="-fx-background-radius: 8 8 8 8;" text="Onaylaması İçin Danışman Öğretmene Gönder" />
+      <Button fx:id="btn_gonder" layoutX="668.0" layoutY="338.0" mnemonicParsing="false" onAction="#btn_gonder_Click" prefHeight="43.0" prefWidth="266.0" style="-fx-background-radius: 8 8 8 8;" text="Onaylaması İçin Danışman Öğretmene Gönder" />
       <TableView fx:id="tbl_onaybek" layoutX="85.0" layoutY="445.0" prefHeight="250.0" prefWidth="850.0">
          <columns>
             <TableColumn fx:id="tbl_onaybek_dersKodu" prefWidth="92.00001525878906" style="-fx-alignment: CENTER;" text="Ders Kodu" />

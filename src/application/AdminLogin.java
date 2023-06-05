@@ -2,6 +2,9 @@ package application;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import com.Mysql.VeritabaniBaglanti;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -49,28 +52,48 @@ public class AdminLogin {
     @FXML
     private TextField txt_sifre;
     LoginController login =new LoginController();
+    private VeritabaniBaglanti baglanti = new VeritabaniBaglanti();
 
     @FXML
     void btn_giris_Click(ActionEvent event) {
     	if (rdio_kontrol.isSelected()==true) {
+    		if (txt_kulad.getText()!="" || txt_sifre.getText()!="") {
+    			if (baglanti.Kontrol("select * from admin where kullanici_ad=? and sifre=?", txt_kulad.getText(), txt_sifre.getText())) {
+    				try {
+        	    		Stage stage1 = new Stage();
+        				AnchorPane pane1 = (AnchorPane)FXMLLoader.load(getClass().getResource("AdminPanel.fxml"));
+        				Scene scene = new Scene(pane1); 
+        				
+        				stage1.setScene(scene);
+        				
+        				
+        				stage1.show();
+        				Stage suanki_stage = (Stage) btn_giris.getScene().getWindow();
+        		    	suanki_stage.close();
+        		    	
+        				
+        			} catch(Exception e) {
+        				e.printStackTrace();
+        			}
+				}
+    			else {
+    				Alert alert = new Alert(AlertType.INFORMATION);
+    				alert.setHeaderText("Uyarı");
+    				alert.setTitle("Yanlış Bilgiler");
+    				alert.setContentText("Kullanıcı Adı veya Şifre Hatalı");
+    				alert.showAndWait();
+				}
+				
+			}
+    		else {
+    			Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setHeaderText("Uyarı");
+				alert.setTitle("Yanlış Bilgiler");
+				alert.setContentText("Kullanıcı Adı veya Şifre Alanını Boş Bırakmayınız");
+				alert.showAndWait();
+			}
     		
-    		
-    			try {
-    	    		Stage stage1 = new Stage();
-    				AnchorPane pane1 = (AnchorPane)FXMLLoader.load(getClass().getResource("AdminPanel.fxml"));
-    				Scene scene = new Scene(pane1); 
-    				
-    				stage1.setScene(scene);
-    				
-    				
-    				stage1.show();
-    				Stage suanki_stage = (Stage) btn_giris.getScene().getWindow();
-    		    	suanki_stage.close();
-    		    	
-    				
-    			} catch(Exception e) {
-    				e.printStackTrace();
-    			}
+    			
     			
     			
 			

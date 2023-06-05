@@ -1,7 +1,10 @@
 package application;
 
 import java.net.URL;
+import java.sql.ResultSet;
 import java.util.ResourceBundle;
+
+import com.Mysql.VeritabaniBaglanti;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -60,8 +63,7 @@ public class OgrenciPanelController {
 	    @FXML
 	    private Button btn_danısman;
 	    
-	    @FXML
-	    private Button btn_program_dersleri;
+
 	    
 	    
 	    @FXML
@@ -96,9 +98,13 @@ public class OgrenciPanelController {
 	    @FXML
 	    private Button btn_bilgigoruntule;
 	    
+	    private int ogrenci_id; 
+	    
+	    private VeritabaniBaglanti baglanti = new VeritabaniBaglanti();
+	    
 	    @FXML
 	    void btn_bilgigoruntule_Click(ActionEvent event) {
-	    	OgrenciBilgiGoruntule bilgi1 = new OgrenciBilgiGoruntule("ali", "baba", 12121212, "11111111111", "asdasda@dsasd.com", "adasdas", 2);
+	    	
 	    
 	    	 try {
 	             	
@@ -107,7 +113,12 @@ public class OgrenciPanelController {
 	             	
 	             	 AnchorPane pane = bilgi.load();
 	                 OgrenciBilgiGoruntuleController bilgiler = bilgi.getController();
-	                 bilgiler.bilgi_getir(bilgi1);
+	                 ResultSet bilgi_getir = baglanti.VeriGetir("select ad,soyad,numara,tc,mail,adres,sınıf from ogrenci_bilgi where id="+ogrenci_id);
+	                 if (bilgi_getir.next()) {
+						OgrenciBilgiGoruntule bilgi1 = new OgrenciBilgiGoruntule(bilgi_getir.getString("ad"),bilgi_getir.getString("soyad"),bilgi_getir.getInt("numara"),bilgi_getir.getString("tc"),bilgi_getir.getString("mail"),bilgi_getir.getString("adres"),bilgi_getir.getInt("sınıf"));
+						bilgiler.bilgi_getir(bilgi1);
+					}
+	                 
 	                  
 	                 anchor_main.getChildren().setAll(pane);
 	     			
@@ -141,7 +152,8 @@ public class OgrenciPanelController {
              	 AnchorPane pane = mailadresi.load();
                 
                 
-                  
+                  OgrenciMailDegistirController mail = mailadresi.getController();
+                  mail.id_Ata(ogrenci_id);
                  anchor_main.getChildren().setAll(pane);
      			
      		
@@ -172,7 +184,8 @@ public class OgrenciPanelController {
 	    	FXMLLoader sifre = new FXMLLoader(getClass().getResource("OgrenciSifreDegistir.fxml"));
          	
         	 AnchorPane pane = sifre.load();
-           
+           OgrenciSifreDegistirController deg =sifre.getController();
+           deg.id_Ata(ogrenci_id);
            
              
             anchor_main.getChildren().setAll(pane);
@@ -242,10 +255,8 @@ public class OgrenciPanelController {
 	    
 	    @FXML
 	    void btn_dersEkle_Click(ActionEvent event) {
-	    	a=FXCollections.observableArrayList();
-	    	b=FXCollections.observableArrayList();
-	    	a.add(new DersEklemeVeriTuru("Anla", "bişiler", "hoca"));
-         	b.add(new DersEklemeVeriTuru("Anlayana", "bilgiayar ders ismi", "mehmet"));
+	    	
+	    	
 	    	 try {
              	
              	
@@ -253,13 +264,14 @@ public class OgrenciPanelController {
              	
              	 AnchorPane pane = ders_ekle.load();
                  OgrenciDersEklemeController ders = ders_ekle.getController();
-                  ders.Ders_Goruntuleme(a, b);
+                
+                  ders.ogr_id(ogrenci_id);
                  anchor_main.getChildren().setAll(pane);
      			
      		
 					
 				} catch (Exception e) {
-					// TODO: handle exception
+					System.out.println(e.getMessage().toString());
 				}
 
 	    }
@@ -282,15 +294,16 @@ public class OgrenciPanelController {
 	    @FXML
 	    void btn_trans_Click(ActionEvent event) {
 	    	bilgiler=FXCollections.observableArrayList();
-	    	bilgiler.add(new NotBilgisiTranskript("Bilgisayar", "85", "32", "56", "65", "CB", 3, 5));
-	    	bilgiler.add(new NotBilgisiTranskript("adasd", "23", "89", "45", "16", "AA", 5, 12));
-	    	bilgiler.add(new NotBilgisiTranskript("asda", "15", "45", "15", "55", "BB", 2, 4));
+	    
 	    	
              try {
              	
              	
              	FXMLLoader transkript = new FXMLLoader(getClass().getResource("OgrenciTranskript.fxml"));
-             	
+             	ResultSet trant = baglanti.VeriGetir("SELECT ders_ad,vize,final,butunleme,sonuc,harf_notu,kredi,akts FROM ogrenci_ders,dersler WHERE ogrenci_ders.ders_id=dersler.id AND ders_durumu=4 AND ogrenci_ders.ogrenci_id="+ogrenci_id);
+             	while(trant.next()) {
+             		bilgiler.add(new NotBilgisiTranskript(trant.getString("ders_ad"), trant.getString("vize"), trant.getString("final"), trant.getString("butunleme"), trant.getString("sonuc"), trant.getString("harf_notu"), trant.getInt("kredi"), trant.getInt("akts")));
+             	}
              	 AnchorPane pane = transkript.load();
                  OgrenciTranskriptController trans = transkript.getController();
                 trans.Transkrip_ata(bilgiler);
@@ -323,12 +336,14 @@ public class OgrenciPanelController {
 	    @FXML
 	    void btn_notlar_Click(ActionEvent event) {
 	    	liste1 = FXCollections.observableArrayList();
-	    	liste1.add(new NotBilgisi("Ders1", "25", "32", "65", String.valueOf(25*0.4+65*0.6), "CD"));
+	    	
 	    	
 	    	
 	    	 try {
-	             	
-	             	
+	             	ResultSet not_getir = baglanti.VeriGetir("select ders_ad,vize,final,butunleme,sonuc,harf_notu FROM ogrenci_ders,dersler WHERE ogrenci_ders.ders_id=dersler.id AND ders_durumu=3 AND ogrenci_ders.ogrenci_id="+ogrenci_id);
+	             	while(not_getir.next()) {
+	             		liste1.add(new NotBilgisi(not_getir.getString("ders_ad"), not_getir.getString("vize"), not_getir.getString("final"), not_getir.getString("butunleme"), not_getir.getString("sonuc"), not_getir.getString("harf_notu")));
+	             	}
 	             	FXMLLoader notlar = new FXMLLoader(getClass().getResource("OgrenciNot.fxml"));
 	             	
 	             	 AnchorPane pane = notlar.load();
@@ -361,17 +376,22 @@ public class OgrenciPanelController {
 	    
 	    ObservableList<DersProgrami> liste;
 	  
-	    
+	    private ObservableList<DanismanBilgileri> danis;
 
 	  @FXML
 	  void btn_danısman_Click(ActionEvent event) {
+		  danis=FXCollections.observableArrayList();
                 try {
-                	
+                	ResultSet danismanlar = baglanti.VeriGetir("select ogretim_uyesi.ad,ogretim_uyesi.soyad,ogretim_uyesi.fakulte,ogretim_uyesi.bolum,ogretim_uyesi.mail FROM ogretim_uyesi,ogrenci_bilgi WHERE ogrenci_bilgi.danisman_id1=ogretim_uyesi.id OR ogrenci_bilgi.danisman_id2=ogretim_uyesi.id AND ogrenci_bilgi.id="+ogrenci_id);
+                	while(danismanlar.next()) {
+                	danis.add(new DanismanBilgileri(danismanlar.getString("ad"), danismanlar.getString("soyad"), danismanlar.getString("fakulte"), danismanlar.getString("bolum"), danismanlar.getString("mail")));
+                	}
                 	FXMLLoader danısmanbilgi = new FXMLLoader(getClass().getResource("OgrenciDanismanBilgileri.fxml"));
                 	
                 	AnchorPane pane = danısmanbilgi.load();
                     	OgrenciDanismanBilgileriController dcont = danısmanbilgi.getController();
-                   dcont.Danısman1_Yazdır("asda", "asdasd000", "adasd", "asa", "fafga");
+                   dcont.Danısman1_Yazdır(danis.get(0).getDanisman_ad(),danis.get(0).getDanisman_soyad(),danis.get(0).getFakulte(),danis.get(0).getBolum(),danis.get(0).getMail());
+                   dcont.Danısman2_Yazdır(danis.get(1).getDanisman_ad(),danis.get(1).getDanisman_soyad(),danis.get(1).getFakulte(),danis.get(1).getBolum(),danis.get(1).getMail());
                 	anchor_main.getChildren().setAll(pane);
         			
         		
@@ -397,37 +417,7 @@ public class OgrenciPanelController {
 	    }
 	 
 	 
-	 
-	 @FXML
-	    void btn_program_dersleri_Click(ActionEvent event) {
-		 
-		 try {
-			 FXMLLoader ProgramBilgi = new FXMLLoader(getClass().getResource("OgrenciProgramDersleri.fxml"));
-		     	
-		     	AnchorPane pane = ProgramBilgi.load();
-		     	anchor_main.getChildren().setAll(pane);
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-	
-			
-	 }
-	    
-
-	    @FXML
-	    void btn_program_dersleri_OffMouse(MouseEvent event) {
-	    	btn_program_dersleri.setStyle(" -fx-background-color: #55595a;");
-
-	    }
-
-	    @FXML
-	    void btn_program_dersleri_OnMouse(MouseEvent event) {
-	    	btn_program_dersleri.setStyle("-fx-background-color:#8B8E8E;");
-
-	    }
-	    
-	    
+  
 	    
 	    @FXML
 	    void btn_sınav_takvimi_Click(ActionEvent event) {
@@ -435,27 +425,53 @@ public class OgrenciPanelController {
 	    }
 
 	    
-	    
+	    ObservableList<DersProgrami> pazartesi;
+	     ObservableList<DersProgrami> sali;
+	     ObservableList<DersProgrami> carsamba;
+	     ObservableList<DersProgrami> persembe;
+	     ObservableList<DersProgrami> cuma;
 	    @FXML
 	    void btn_ders_programı_Click(ActionEvent event) {
-	    	liste=FXCollections.observableArrayList();
-	        liste.add(new DersProgrami("9:30 - 10:20", "BM-102", "Bilgi Ağ", "A-102", "Mehmet"));
-	        liste.add(new DersProgrami("10:30 - 11:20", "BM-102", "Bilgi Ağ", "A-102", "Ali"));
+	    	pazartesi=FXCollections.observableArrayList();
+	    	sali=FXCollections.observableArrayList();
+	    	carsamba=FXCollections.observableArrayList();
+	    	persembe=FXCollections.observableArrayList();
+	    	cuma=FXCollections.observableArrayList();
+	        
+	    
 	        
 	    	
 	        try {
+
+	         	ResultSet dersprogrami=baglanti.VeriGetir("select ders_ad,ders_kodu,derslik,bas_saat,bit_saat,haftanin_gunu,ogretim_uyesi.ad,ogretim_uyesi.soyad FROM ders_programi,ogrenci_ders,dersler,ogretim_uyesi WHERE ogrenci_ders.ders_id=ders_programi.ders_id AND ogrenci_ders.ders_id=dersler.id AND dersler.ogretim_uyesi_id=ogretim_uyesi.id AND ogrenci_ders.ders_durumu=3 AND ogrenci_ders.ogrenci_id="+ogrenci_id);
+	         	while(dersprogrami.next()) {
+	         		if (dersprogrami.getInt("haftanin_gunu")==0) {
+						pazartesi.add(new DersProgrami(dersprogrami.getString("bas_saat")+" - "+dersprogrami.getString("bit_saat"), dersprogrami.getString("ders_kodu"), dersprogrami.getString("ders_ad"), dersprogrami.getString("derslik"),dersprogrami.getString("ad")+" "+dersprogrami.getString("soyad")));
+					}
+	         		if (dersprogrami.getInt("haftanin_gunu")==1) {
+	         			sali.add(new DersProgrami(dersprogrami.getString("bas_saat")+" - "+dersprogrami.getString("bit_saat"), dersprogrami.getString("ders_kodu"), dersprogrami.getString("ders_ad"), dersprogrami.getString("derslik"),dersprogrami.getString("ad")+" "+dersprogrami.getString("soyad")));
+					}
+	         		if (dersprogrami.getInt("haftanin_gunu")==2) {
+	         			carsamba.add(new DersProgrami(dersprogrami.getString("bas_saat")+" - "+dersprogrami.getString("bit_saat"), dersprogrami.getString("ders_kodu"), dersprogrami.getString("ders_ad"), dersprogrami.getString("derslik"),dersprogrami.getString("ad")+" "+dersprogrami.getString("soyad")));
+					}
+	         		if (dersprogrami.getInt("haftanin_gunu")==3) {
+	         			persembe.add(new DersProgrami(dersprogrami.getString("bas_saat")+" - "+dersprogrami.getString("bit_saat"), dersprogrami.getString("ders_kodu"), dersprogrami.getString("ders_ad"), dersprogrami.getString("derslik"),dersprogrami.getString("ad")+" "+dersprogrami.getString("soyad")));
+					}
+	         		if (dersprogrami.getInt("haftanin_gunu")==4) {
+	         			cuma.add(new DersProgrami(dersprogrami.getString("bas_saat")+" - "+dersprogrami.getString("bit_saat"), dersprogrami.getString("ders_kodu"), dersprogrami.getString("ders_ad"), dersprogrami.getString("derslik"),dersprogrami.getString("ad")+" "+dersprogrami.getString("soyad")));
+					}}
             	
             	FXMLLoader derprogramı = new FXMLLoader(getClass().getResource("DersProgrami.fxml"));
             	
             	AnchorPane pane = derprogramı.load();
                 	DersProgramiController gunler = derprogramı.getController();
-                	gunler.Program_Ata(liste, liste, liste, liste, liste);
+                	gunler.Program_Ata(pazartesi, sali, carsamba, persembe, cuma);
                
             	anchor_main.getChildren().setAll(pane);
     			
     		
-				
-			} catch (Exception e) {
+	         	}
+			 catch (Exception e) {
 				System.out.println(e.getMessage().toString());
 			}
 	    	
@@ -479,20 +495,30 @@ public class OgrenciPanelController {
 	    
 	    @FXML
 	    void btn_duyurular_Click(ActionEvent event) {
-	    	
+	    	String bolum_ad="";
 	    	 try {
              	
              	FXMLLoader duyurular = new FXMLLoader(getClass().getResource("OgrenciDuyurular.fxml"));
              	
              	AnchorPane pane = duyurular.load();
                 OgrenciDuyurularController duyu = duyurular.getController();
-                duyu.icerik_ata("Şimdilik", "Boş İçerik");
+                
+                ResultSet bolum = baglanti.VeriGetir("select bolum from ogrenci_bilgi where id="+ogrenci_id);
+                if (bolum.next()) {
+					bolum_ad=bolum.getString("bolum");
+				}
+                
+                ResultSet duyuru = baglanti.VeriGetir("select baslik,icerik from duyuru where duyuru.bolum='"+bolum_ad+ "'");
+                if (duyuru.next()) {
+                	duyu.icerik_ata(duyuru.getString("baslik"), duyuru.getString("icerik"));
+				}
+                
              	anchor_main.getChildren().setAll(pane);
      			
      		
 					
 				} catch (Exception e) {
-					// TODO: handle exception
+					System.out.println(e.getMessage().toString());
 				}
 
 	    }
@@ -643,7 +669,7 @@ public class OgrenciPanelController {
          assert btn_duyurular != null : "fx:id=\"btn_duyurular\" was not injected: check your FXML file 'OgrenciPanel.fxml'.";
          assert btn_genel != null : "fx:id=\"btn_genel\" was not injected: check your FXML file 'OgrenciPanel.fxml'.";
          assert btn_kullanıcı != null : "fx:id=\"btn_kullanıcı\" was not injected: check your FXML file 'OgrenciPanel.fxml'.";
-         assert btn_program_dersleri != null : "fx:id=\"btn_program_dersleri\" was not injected: check your FXML file 'OgrenciPanel.fxml'.";
+     
          assert btn_staj != null : "fx:id=\"btn_staj\" was not injected: check your FXML file 'OgrenciPanel.fxml'.";
        
          assert pnl_donem != null : "fx:id=\"pnl_donem\" was not injected: check your FXML file 'OgrenciPanel.fxml'.";
@@ -653,6 +679,9 @@ public class OgrenciPanelController {
          
 
 
+    }
+    public void ogr_id(int id) {
+    	this.ogrenci_id=id;
     }
 
 }

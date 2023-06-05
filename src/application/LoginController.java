@@ -2,7 +2,11 @@ package application;
 
 
 import java.net.URL;
+import java.util.Random;
 import java.util.ResourceBundle;
+
+import com.Mysql.VeritabaniBaglanti;
+
 import javafx.animation.FadeTransition;
 import javafx.animation.ScaleTransition;
 import javafx.animation.TranslateTransition;
@@ -13,6 +17,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -89,9 +95,20 @@ public class LoginController {
 
     @FXML
     private TextField txt_psifre;
+    
+
+    @FXML
+    private TextField txt_captcha_p;
+    
+    private VeritabaniBaglanti baglanti = new VeritabaniBaglanti();
+    private Random rnd = new Random();
+    private String sonuc;
+    
+    
 
     @FXML
     void btn_admin_Click(ActionEvent event) {
+    	random_Ata();
     	try {
     		FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminLogin.fxml"));
 			AnchorPane pane2 = (AnchorPane) loader.load();
@@ -125,22 +142,61 @@ public class LoginController {
 
     @FXML
     void btn_login_o_Click(ActionEvent event) {
-    	try {
-    		Stage yeni_stage = new Stage();
-			AnchorPane pane1 = (AnchorPane)FXMLLoader.load(getClass().getResource("OgrenciPanel.fxml"));
-			Scene scene = new Scene(pane1); 
-		    yeni_stage.setScene(scene);
-			yeni_stage.show();
-			
-			Stage suanki_stage = (Stage) btn_login_o.getScene().getWindow();
-	    	suanki_stage.close();
+    	if (txt_okulno.getText()=="" || txt_osifre.getText()=="") {
+    		Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setHeaderText("Uyarı");
+			alert.setTitle("Okul No Ve Şifre Boş Bırakılamaz");
+			alert.setContentText("Lütfen Okul Numarasını Ve Şifrenizi Boş Bırakmayınız.");
+			alert.showAndWait();
     		
-    		
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-			System.out.println(e.getMessage().toString());
 		}
+    	else {
+    		if (txt_captcha.getText().equals(sonuc)) {
+    			if (baglanti.Kontrol("Select *  from ogrenci_bilgi where numara=? and sifre=?", Integer.parseInt(txt_okulno.getText()), txt_osifre.getText())) {
+    				
+    				
+    				try {
+    		    		Stage yeni_stage = new Stage();
+    					FXMLLoader loader = new FXMLLoader(getClass().getResource("OgrenciPanel.fxml"));
+    					AnchorPane pane1=loader.load();
+    					Scene scene = new Scene(pane1); 
+    					OgrenciPanelController ogr = loader.getController();
+    					ogr.ogr_id(baglanti.id_Getir("Select id from ogrenci_bilgi where numara=?", txt_okulno.getText()));
+    				    yeni_stage.setScene(scene);
+    					yeni_stage.show();
+    					
+    					Stage suanki_stage = (Stage) btn_login_o.getScene().getWindow();
+    			    	suanki_stage.close();
+    		    		
+    		    		
+    					
+    				} catch (Exception e) {
+    					// TODO: handle exception
+    					System.out.println(e.getMessage().toString());
+    				}
+    			}
+    			else {
+    				Alert alert = new Alert(AlertType.INFORMATION);
+    				alert.setHeaderText("Uyarı");
+    				alert.setTitle("Okul No Veya Şifre Yanlış");
+    				alert.setContentText("Lütfen Okul Numarasını Ve Şifrenizi Kontrol Ediniz.");
+    				alert.showAndWait();
+    	    		
+    			}
+			}
+    		else {
+    			Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setHeaderText("Uyarı");
+				alert.setTitle("Dğrulama Yanlış");
+				alert.setContentText("Lütfen Doğrulama Kodunu Kontrol Ediniz.");
+				alert.showAndWait();
+			}
+    		
+    		
+			
+		}
+    	random_Ata();
+    	
 
     }
     
@@ -158,23 +214,52 @@ public class LoginController {
 
     @FXML
     void btn_login_p_click(ActionEvent event) {
+    	if (txt_kulad.getText()!="" || txt_psifre.getText()!="") {
+    		
+    		if (txt_captcha_p.getText().equals(sonuc)) {
+    			if (baglanti.Kontrol("select * from ogretim_uyesi where kullanici_ad=? and sifre=?", txt_kulad.getText(), txt_psifre.getText())) {
+    				
+
+            		try {
+                		Stage yeni_stage = new Stage();
+                		FXMLLoader loader = new FXMLLoader(getClass().getResource("OgretmenPanel.fxml"));
+            			AnchorPane pane1 = loader.load();
+            			OgretmenPanelController panel = loader.getController();
+            			panel.setOgretim_id(baglanti.id_Getir("select id from ogretim_uyesi where kullanici_ad=? and sifre=?", txt_kulad.getText(), txt_psifre.getText()));
+            			Scene scene = new Scene(pane1); 
+            		    yeni_stage.setScene(scene);
+            			yeni_stage.show();
+            			
+            			Stage suanki_stage = (Stage) btn_login_o.getScene().getWindow();
+            	    	suanki_stage.close();
+                		
+                		
+            			
+            		} catch (Exception e) {
+            			// TODO: handle exception
+            			System.out.println(e.getMessage().toString());
+            		}
+    			}
+        		else {
+    				Alert alert = new Alert(AlertType.INFORMATION);
+    				alert.setHeaderText("Uyarı");
+    				alert.setTitle("Yanlış Bilgiler");
+    				alert.setContentText("Kullanıcı Adı veya Şifre Yanlış");
+    				alert.showAndWait();
+    			}
+			}
+    		else {
+    			Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setHeaderText("Uyarı");
+				alert.setTitle("Dğrulama Yanlış");
+				alert.setContentText("Lütfen Doğrulama Kodunu Kontrol Ediniz.");
+				alert.showAndWait();
+			}
     	
-    	try {
-    		Stage yeni_stage = new Stage();
-			AnchorPane pane1 = (AnchorPane)FXMLLoader.load(getClass().getResource("OgretmenPanel.fxml"));
-			Scene scene = new Scene(pane1); 
-		    yeni_stage.setScene(scene);
-			yeni_stage.show();
-			
-			Stage suanki_stage = (Stage) btn_login_o.getScene().getWindow();
-	    	suanki_stage.close();
     		
     		
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-			System.out.println(e.getMessage().toString());
 		}
+    	random_Ata();
 
     }
     
@@ -207,7 +292,7 @@ public class LoginController {
         	
         	// ogretmen paneli açılış
         	
-        	
+    	    random_Ata();
         	
         	
         	
@@ -242,37 +327,13 @@ public class LoginController {
     	
     	
     	
-        pnl_main.translateXProperty().addListener(new ChangeListener<Number>() {
-        	@Override
-        	public void changed(ObservableValue<? extends Number> arg0, Number arg1, Number arg2) {
-        		String yenideger=String.valueOf(arg2);
-        		if (Double.parseDouble(yenideger)>598.9) {
-        			btn_ogrenci.setDisable(false);
-					
-				}
-        		if (Double.parseDouble(yenideger) >0) {
-        			btn_ogretmen.setDisable(true);
-					
-				}
-        		if (Double.parseDouble(yenideger)< 0.1) {
-        			btn_ogretmen.setDisable(false);
-        			
-					
-				}
-        		if (Double.parseDouble(yenideger)<598) {
-					btn_ogrenci.setDisable(true);
-				}
-    			
-    		}
-        		
-        	
-		});
+        
     	
     	
     	
 		
     	
-    		
+        random_Ata();
     	
     }
     
@@ -352,6 +413,38 @@ public class LoginController {
     	btn_ogrenci.setDisable(true);
     	
     	
+    	random_Ata();
+    	
+    	pnl_ogrenci.opacityProperty().addListener(new ChangeListener<Number>() {
+    		@Override
+    		public void changed(ObservableValue<? extends Number> arg0, Number arg1, Number arg2) {
+    			
+    			String yenideger=String.valueOf(arg2);
+    			if (Double.parseDouble(yenideger)==1) {
+    				btn_ogretmen.setDisable(false);
+					
+					
+				}
+    			
+    			if (Double.parseDouble(yenideger)==0) {
+    				btn_ogretmen.setDisable(true);
+					
+				}
+    		}
+		});
+    	pnl_ogretmen.opacityProperty().addListener(new ChangeListener<Number>() {
+    		@Override
+    		public void changed(ObservableValue<? extends Number> arg0, Number arg1, Number arg2) {
+    			
+    			String yenideger=String.valueOf(arg2);
+    			if (Double.parseDouble(yenideger)<1) {
+    				btn_ogrenci.setDisable(true);
+				}
+    			if (Double.parseDouble(yenideger)==1) {
+    				btn_ogrenci.setDisable(false);
+				}
+    		}
+		});
     	
     	
 
@@ -414,6 +507,15 @@ public class LoginController {
     	scale.setFromY(baslangıc);
     	scale.setToY(bitis);
     	scale.play();
+    }
+    
+    private void random_Ata() {
+    	int deger1=rnd.nextInt(100);
+    	int deger2=rnd.nextInt(100);
+    	lbl_captcha_o.setText(String.valueOf(deger1)+" + "+String.valueOf(deger2));
+    	lbl_captcha_p.setText(String.valueOf(deger1)+" + "+String.valueOf(deger2));
+    	sonuc=String.valueOf(deger1+deger2);
+    	
     }
     
 }

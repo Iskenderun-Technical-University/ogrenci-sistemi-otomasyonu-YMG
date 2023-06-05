@@ -1,8 +1,12 @@
 package application;
 
 import java.net.URL;
+import java.sql.ResultSet;
 import java.util.ResourceBundle;
 
+import com.Mysql.VeritabaniBaglanti;
+
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
@@ -40,6 +44,9 @@ public class OgretmenDanismanGetirController {
 
     @FXML
     private TableView<OgretmenDanismanGetir> tbl_ogrenciler;
+    
+    private VeritabaniBaglanti baglanti = new VeritabaniBaglanti();
+    private ObservableList<OgretmenDanismanGetir> ogrenciler;
 
     @FXML
     void initialize() {
@@ -62,8 +69,17 @@ public class OgretmenDanismanGetirController {
         column_ogrsinif.setCellValueFactory(new PropertyValueFactory<>("sinif"));
     }
     
-    public void deger_Ata(ObservableList<OgretmenDanismanGetir> ogrenciler) {
-    	tbl_ogrenciler.getItems().addAll(ogrenciler);
+    public void deger_Ata(int ogretmen_id) {
+    	ogrenciler=FXCollections.observableArrayList();
+    	try {
+			ResultSet degerler = baglanti.VeriGetir("select numara,ad,soyad,bolum,sınıf,ogretim,mail from ogrenci_bilgi where danisman_id1="+String.valueOf(ogretmen_id));
+			while(degerler.next()) {
+				ogrenciler.add(new OgretmenDanismanGetir(degerler.getString("ad"), degerler.getString("soyad"), degerler.getInt("numara"), null, degerler.getString("mail"), null, degerler.getInt("sınıf"), degerler.getString("bolum"), degerler.getInt("ogretim")));
+			}
+			tbl_ogrenciler.getItems().addAll(ogrenciler);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
     }
 
 }
