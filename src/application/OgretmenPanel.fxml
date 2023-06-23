@@ -51,11 +51,6 @@
                   <Font size="15.0" />
                </font>
             </Button>
-            <Button fx:id="btn_ogrenciDevamsizlik" mnemonicParsing="false" onAction="#btn_ogrenciDevamsizlik_Click" onMouseEntered="#btn_ogrenciDevamsizlik_OnMouse" onMouseExited="#btn_ogrenciDevamsizlik_OffMouse" prefHeight="34.0" prefWidth="198.0" style="-fx-background-color: #55595a; -fx-background-radius: 0 20 0 0;" text="Devamsızlık Girişi" textFill="WHITE">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Button>
          </children>
       </VBox>
       <VBox fx:id="pnl_donem" layoutX="259.0" layoutY="222.0" onMouseEntered="#pnl_donem_OnMouse" onMouseExited="#pnl_donem_OffMouse" prefHeight="250.0" prefWidth="200.0" spacing="14.0" style="-fx-background-color: #55595a; -fx-background-radius: 0 20 20 20; -fx-border-color: #3a3a3a; -fx-border-radius: 0 20 20 20;" visible="false">

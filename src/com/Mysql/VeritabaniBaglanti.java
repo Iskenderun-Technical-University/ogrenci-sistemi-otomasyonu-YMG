@@ -19,7 +19,7 @@ private ResultSet getirilen=null;
 			conn = DriverManager.getConnection("jdbc:mysql://localhost/obs","root","");
 			return conn;
 		} catch (Exception e) {
-			// TODO: handle exception
+			
 			System.out.println(e.getMessage().toString());
 			return null;
 		}
@@ -77,6 +77,34 @@ public void Insert(String sql,String value1,String value2,String value3,int valu
 		
 		
 	}
+
+public void Insert(String sql,String value1,String value2,String value3,int value4,int value5,int value6,int value7,String value8,int value9 , int value10 ,int value11,int value12) {
+	
+	try {
+		
+		sorguIfadesi=Baglan().prepareStatement(sql);
+		sorguIfadesi.setString(1, value1);
+		sorguIfadesi.setString(2, value2);
+		sorguIfadesi.setString(3, value3);
+		sorguIfadesi.setInt(4, value4);
+		sorguIfadesi.setInt(5, value5);
+		sorguIfadesi.setInt(6, value6);
+		sorguIfadesi.setInt(7, value7);
+		sorguIfadesi.setString(8, value8);
+		sorguIfadesi.setInt(9, value9);
+		sorguIfadesi.setInt(10, value10);
+		sorguIfadesi.setInt(11, value11);
+		sorguIfadesi.setInt(12, value12);
+		
+	    sorguIfadesi.executeUpdate();
+	    
+	  
+	} catch (Exception e) {
+		System.out.println(e.getMessage().toString());
+	}
+	
+	
+}
 public void Insert(String sql,int value1,int value2,int value3) {
 	
 	try {

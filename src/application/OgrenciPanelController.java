@@ -41,8 +41,7 @@ public class OgrenciPanelController {
 	    @FXML
 	    private Button btn_kullanıcı;
 
-	    @FXML
-	    private Button btn_staj;
+	
 
 
 	    
@@ -56,8 +55,7 @@ public class OgrenciPanelController {
 	    @FXML
 	    private VBox pnl_kullanıcı;
 
-	    @FXML
-	    private VBox pnl_staj;
+	 
 
 	 
 	    @FXML
@@ -584,20 +582,7 @@ public class OgrenciPanelController {
 
     }
 
-    @FXML
-    void btn_staj_OffMouse(MouseEvent event) {
-    	btn_staj.setStyle("-fx-background-color:  #55595a;");
-    	pnl_staj.setVisible(false);
-
-    }
-
-    @FXML
-    void btn_staj_OnMouse(MouseEvent event) {
-    	btn_staj.setStyle("-fx-background-color: #8B8E8E;");
-    	pnl_staj.setVisible(true);
-    	
-
-    }
+   
     
     
 
@@ -640,18 +625,7 @@ public class OgrenciPanelController {
 
     }
 
-    @FXML
-    void pnl_staj_OffMouse(MouseEvent event) {
-    	pnl_staj.setVisible(false);
 
-    }
-
-    @FXML
-    void pnl_staj_OnMouse(MouseEvent event) {
-    	pnl_staj.setVisible(true);
-
-    }
-    
     
     
     
@@ -670,12 +644,12 @@ public class OgrenciPanelController {
          assert btn_genel != null : "fx:id=\"btn_genel\" was not injected: check your FXML file 'OgrenciPanel.fxml'.";
          assert btn_kullanıcı != null : "fx:id=\"btn_kullanıcı\" was not injected: check your FXML file 'OgrenciPanel.fxml'.";
      
-         assert btn_staj != null : "fx:id=\"btn_staj\" was not injected: check your FXML file 'OgrenciPanel.fxml'.";
+        
        
          assert pnl_donem != null : "fx:id=\"pnl_donem\" was not injected: check your FXML file 'OgrenciPanel.fxml'.";
          assert pnl_genel != null : "fx:id=\"pnl_genel\" was not injected: check your FXML file 'OgrenciPanel.fxml'.";
          assert pnl_kullanıcı != null : "fx:id=\"pnl_kullanıcı\" was not injected: check your FXML file 'OgrenciPanel.fxml'.";
-         assert pnl_staj != null : "fx:id=\"pnl_staj\" was not injected: check your FXML file 'OgrenciPanel.fxml'.";
+       
          
 
 

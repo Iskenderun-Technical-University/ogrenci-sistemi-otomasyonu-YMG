@@ -27,11 +27,6 @@
                   <Font size="19.0" />
                </font>
             </Button>
-            <Button fx:id="btn_staj" mnemonicParsing="false" onMouseEntered="#btn_staj_OnMouse" onMouseExited="#btn_staj_OffMouse" prefHeight="60.0" prefWidth="278.0" style="-fx-background-color: 0 0 0 64;" text="Staj Bilgileri" textFill="WHITE">
-               <font>
-                  <Font size="19.0" />
-               </font>
-            </Button>
             <Button fx:id="btn_kullanıcı" mnemonicParsing="false" onMouseEntered="#btn_kullanıcı_OnMouse" onMouseExited="#btn_kullanıcı_OffMouse" prefHeight="60.0" prefWidth="263.0" style="-fx-background-color: 0 0 0 64;" text="Kullanıcı İşlemleri" textFill="WHITE">
                <font>
                   <Font size="19.0" />
@@ -76,21 +71,7 @@
                </font>
             </Button>
          </children></VBox>
-      <VBox fx:id="pnl_staj" layoutX="259.0" layoutY="296.0" onMouseEntered="#pnl_staj_OnMouse" onMouseExited="#pnl_staj_OffMouse" prefHeight="250.0" prefWidth="200.0" spacing="14.0" style="-fx-background-color: #55595a; -fx-background-radius: 0 20 20 20; -fx-border-color: #3a3a3a; -fx-border-radius: 0 20 20 20;" visible="false">
-         <children>
-            <Button fx:id="btn_stajbasvuru" mnemonicParsing="false" onAction="#btn_stajbasvuru_Click" onMouseEntered="#btn_stajbasvuru_OnMouse" onMouseExited="#btn_stajbasvuru_OffMouse" prefHeight="34.0" prefWidth="198.0" style="-fx-background-color: #55595a; -fx-background-radius: 0 20 0 0;" text="WIP" textFill="WHITE">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Button>
-            <Button fx:id="btn_stajdurumu" mnemonicParsing="false" onAction="#btn_stajdurumu_Click" onMouseEntered="#btn_stajdurumu_OnMouse" onMouseExited="#btn_stajdurumu_OffMouse" prefHeight="34.0" prefWidth="198.0" style="-fx-background-color: #55595a; -fx-background-radius: 0 20 0 0;" text="WIP" textFill="WHITE">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Button>
-         </children>
-      </VBox>
-      <VBox fx:id="pnl_kullanıcı" layoutX="259.0" layoutY="373.0" onMouseEntered="#btn_kullanıcı_OnMouse" onMouseExited="#btn_kullanıcı_OffMouse" prefHeight="250.0" prefWidth="200.0" spacing="14.0" style="-fx-background-color: #55595a; -fx-background-radius: 0 20 20 20; -fx-border-color: #3a3a3a; -fx-border-radius: 0 20 20 20;" visible="false">
+      <VBox fx:id="pnl_kullanıcı" layoutX="259.0" layoutY="298.0" onMouseEntered="#btn_kullanıcı_OnMouse" onMouseExited="#btn_kullanıcı_OffMouse" prefHeight="250.0" prefWidth="200.0" spacing="14.0" style="-fx-background-color: #55595a; -fx-background-radius: 0 20 20 20; -fx-border-color: #3a3a3a; -fx-border-radius: 0 20 20 20;" visible="false">
          <children>
             <Button fx:id="btn_sifredegistir" mnemonicParsing="false" onAction="#btn_sifredegistir_Click" onMouseEntered="#btn_sifredegistir_OnMouse" onMouseExited="#btn_sifredegistir_OffMouse" prefHeight="34.0" prefWidth="198.0" style="-fx-background-color: #55595a; -fx-background-radius: 0 20 0 0;" text="Şifre Değiştir" textFill="WHITE">
                <font>

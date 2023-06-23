@@ -58,7 +58,11 @@ public class YeniDersKayitController {
     @FXML
     private TextField txt_derslik;
     
+    @FXML
+    private ComboBox<String> combo_bolum;
+    
     private ObservableList<Danisman> danismanlar;
+    private ObservableList<Bolum> bolumler;
     
     private VeritabaniBaglanti baglanti =new VeritabaniBaglanti();
 
@@ -86,14 +90,23 @@ public class YeniDersKayitController {
 				String ad = ad_soyad[0];
 				String soyad = ad_soyad[1];
 				int  id = 0;
+				int bol_id=0;
 				
 				for(int i=0;i<danismanlar.size();i++) {
 					if (danismanlar.get(i).getDanısman_Ad().equals(ad) && danismanlar.get(i).getDanısman_SoyAd().equals(soyad)) {
 						id = danismanlar.get(i).getId();
 					}
 				}
-				String  sql = "insert into dersler (ders_kodu,derslik,ders_ad,sinif,uyg_saat,lab_saat,teo_saat,zorunlu ,kredi,akts,ogretim_uyesi_id) values (?,?,?,?,?,?,?,?,?,?,?) ";
-				baglanti.Insert(sql, txt_dersKodu.getText(), txt_derslik.getText(), txt_DersAdi.getText(), combo_sinif.getSelectionModel().getSelectedItem(), combo_uygSaat.getSelectionModel().getSelectedItem(), combo_labSaat.getSelectionModel().getSelectedItem(), combo_teoSaat.getSelectionModel().getSelectedItem(), combo_zorunlulul.getSelectionModel().getSelectedItem(), combo_kredi.getSelectionModel().getSelectedItem(), combo_akts.getSelectionModel().getSelectedItem(), id);
+				
+				for(int i=0;i<bolumler.size();i++) {
+					if (bolumler.get(i).getBolum_ad().equals(combo_bolum.getSelectionModel().getSelectedItem())) {
+						bol_id = bolumler.get(i).getId();
+					}
+				}
+				
+				
+				String  sql = "insert into dersler (ders_kodu,derslik,ders_ad,sinif,uyg_saat,lab_saat,teo_saat,zorunlu ,kredi,akts,ogretim_uyesi_id,bolum_id) values (?,?,?,?,?,?,?,?,?,?,?,?) ";
+				baglanti.Insert(sql, txt_dersKodu.getText(), txt_derslik.getText(), txt_DersAdi.getText(), combo_sinif.getSelectionModel().getSelectedItem(), combo_uygSaat.getSelectionModel().getSelectedItem(), combo_labSaat.getSelectionModel().getSelectedItem(), combo_teoSaat.getSelectionModel().getSelectedItem(), combo_zorunlulul.getSelectionModel().getSelectedItem(), combo_kredi.getSelectionModel().getSelectedItem(), combo_akts.getSelectionModel().getSelectedItem(), id,bol_id);
 			}
 			Alert alert = new Alert(AlertType.INFORMATION);
     		alert.setTitle("Bilgilendirme");
@@ -123,7 +136,7 @@ public class YeniDersKayitController {
         assert txt_DersAdi != null : "fx:id=\"txt_DersAdi\" was not injected: check your FXML file 'YeniDersKayit.fxml'.";
         assert txt_dersKodu != null : "fx:id=\"txt_dersKodu\" was not injected: check your FXML file 'YeniDersKayit.fxml'.";
         assert txt_derslik != null : "fx:id=\"txt_derslik\" was not injected: check your FXML file 'YeniDersKayit.fxml'.";
-        
+        bolumler = FXCollections.observableArrayList();
         for(int i=1;i<21;i++) {
         	combo_akts.getItems().add(i);
         	
@@ -164,6 +177,26 @@ public class YeniDersKayitController {
         	combo_ogretimUyesi.getItems().add(danisman.getDanısman_Ad()+" "+danisman.getDanısman_SoyAd());
 		}
     	 
+        try {
+			
+        	
+        	
+        	 VeritabaniBaglanti baglanti = new VeritabaniBaglanti();
+           	 ResultSet veritabani_bolumler = baglanti.VeriGetir("select *from Bolum");
+           	 while(veritabani_bolumler.next()) {
+           		 bolumler.add(new Bolum(veritabani_bolumler.getInt("id"), veritabani_bolumler.getString("bolum_ad")));
+           	 }
+           	for(Bolum bol : bolumler) {
+              	 combo_bolum.getItems().add(bol.getBolum_ad());
+               }
+        	
+        	
+        	
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+        
+        
     }
     
    /* public void danısman_ata(ObservableList<Danisman> danismanlar) {
