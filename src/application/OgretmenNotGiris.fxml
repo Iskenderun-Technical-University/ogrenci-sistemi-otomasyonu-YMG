@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1021.0" style="-fx-background-color: #A8AAAA;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.OgretmenNotGirisController">
+   <children>
+      <TableView fx:id="tbt_notlar" layoutY="6.0" prefHeight="518.0" prefWidth="1021.0">
+        <columns>
+          <TableColumn fx:id="col_ogrnum" prefWidth="116.80001521110535" text="Öğrenci Numarası" />
+          <TableColumn fx:id="col_ograd" prefWidth="125.5999755859375" text="Öğrenci Ad" />
+            <TableColumn fx:id="col_ogrsoyad" prefWidth="128.8000030517578" text="Öğrenci Soyad" />
+            <TableColumn fx:id="col_dersad" prefWidth="176.0" text="Ders Adı" />
+            <TableColumn fx:id="col_vize" prefWidth="87.20001220703125" text="Vize" />
+            <TableColumn fx:id="col_final" prefWidth="95.199951171875" text="Final" />
+            <TableColumn fx:id="col_but" prefWidth="124.79998779296875" text="Bütünleme" />
+            <TableColumn fx:id="col_sonuc" prefWidth="97.60003662109375" text="Sonuç" />
+            <TableColumn fx:id="col_harfnotu" prefWidth="66.39990234375" text="Harf Notu" />
+        </columns>
+      </TableView>
+      <TextField fx:id="txt_vize" layoutX="65.0" layoutY="554.0" promptText="Vize" />
+      <TextField fx:id="txt_but" layoutX="65.0" layoutY="638.0" promptText="Bütünleme" />
+      <TextField fx:id="txt_final" layoutX="65.0" layoutY="596.0" promptText="Final" />
+      <TextField fx:id="txt_sonuc" layoutX="278.0" layoutY="554.0" promptText="Sonuç" />
+      <ComboBox fx:id="combo_harfnotu" layoutX="277.0" layoutY="596.0" prefWidth="150.0" promptText="Harf Notu" />
+      <Button fx:id="btn_notlarıGir" layoutX="511.0" layoutY="554.0" mnemonicParsing="false" onAction="#btn_notlarıGir_Click" prefHeight="34.0" prefWidth="164.0" text="Notları Gir" />
+      <Label layoutX="65.0" layoutY="679.0" text="Dikkat ! Öğrencinin Tüm sınav sonuçlarını sisteme kaydetmek için Sisteme Kaydet butonunu , Not giriş işlemleri için Notları Gir butonunu kullanınız." />
+      <Button fx:id="btn_sistemekaydet" layoutX="691.0" layoutY="554.0" mnemonicParsing="false" onAction="#btn_sistemekaydet_Click" prefHeight="34.0" prefWidth="164.0" text="Sisteme Kaydet" />
+      <Label layoutX="65.0" layoutY="698.0" text="Açıklanmayan sınav sonuçları için o bölmeyi boş bırakabilirsiniz." />
+      <Label layoutX="34.0" layoutY="558.0" text="Vize" />
+      <Label layoutX="34.0" layoutY="600.0" text="Final" />
+      <Label layoutX="34.0" layoutY="642.0" text="Büt" />
+      <Label layoutX="233.0" layoutY="558.0" text="Sonuç" />
+   </children>
+</AnchorPane>

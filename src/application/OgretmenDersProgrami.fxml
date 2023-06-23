@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1021.0" style="-fx-background-color: #A8AAAA;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.OgretmenDersProgramiController">
+   <children>
+      <TabPane cache="true" layoutX="54.0" layoutY="39.0" prefHeight="642.0" prefWidth="935.0" style="-fx-background-color: #55595a;" tabClosingPolicy="UNAVAILABLE" tabMinWidth="170.0">
+         <tabs>
+            <Tab text="Pazartesi">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="tbl_pazartesi" layoutX="41.0" layoutY="33.0" prefHeight="546.0" prefWidth="853.0">
+                           <columns>
+                              <TableColumn fx:id="column_pazartesi_saat" prefWidth="104.00001525878906" text="Saat" />
+                              <TableColumn fx:id="column_pazartesi_dersKodu" prefWidth="122.39996337890625" text="Ders Kodu" />
+                              <TableColumn fx:id="column_pazartesi_dersAdi" minWidth="0.0" prefWidth="96.800048828125" text="Ders Adı" />
+                              <TableColumn fx:id="column_pazartesi_derslik" prefWidth="142.39996337890625" text="Derslik" />
+                           </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="Salı">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="tbl_sali" layoutX="41.0" layoutY="33.0" prefHeight="546.0" prefWidth="853.0">
+                           <columns>
+                              <TableColumn fx:id="tbl_sali_saat" prefWidth="104.00001525878906" text="Saat" />
+                              <TableColumn fx:id="tbl_sali_dersKodu" prefWidth="122.39996337890625" text="Ders Kodu" />
+                              <TableColumn fx:id="tbl_sali_dersAdi" minWidth="0.0" prefWidth="96.800048828125" text="Ders Adı" />
+                              <TableColumn fx:id="tbl_sali_derslik" prefWidth="142.39996337890625" text="Derslik" />
+                           </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="Çarşamba">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="tbl_carsamba" layoutX="41.0" layoutY="33.0" prefHeight="546.0" prefWidth="853.0">
+                           <columns>
+                              <TableColumn fx:id="tbl_carsamba_saat" prefWidth="104.00001525878906" text="Saat" />
+                              <TableColumn fx:id="tbl_carsamba_dersKodu" prefWidth="122.39996337890625" text="Ders Kodu" />
+                              <TableColumn fx:id="tbl_carsamba_dersAdi" minWidth="0.0" prefWidth="96.800048828125" text="Ders Adı" />
+                              <TableColumn fx:id="tbl_carsamba_derslik" prefWidth="142.39996337890625" text="Derslik" />
+                           </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="Perşembe">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="tbl_persembe" layoutX="41.0" layoutY="33.0" prefHeight="546.0" prefWidth="853.0">
+                           <columns>
+                              <TableColumn fx:id="tbl_persembe_saat" prefWidth="104.00001525878906" text="Saat" />
+                              <TableColumn fx:id="tbl_persembe_dersKodu" prefWidth="122.39996337890625" text="Ders Kodu" />
+                              <TableColumn fx:id="tbl_persembe_derdAdi" minWidth="0.0" prefWidth="96.800048828125" text="Ders Adı" />
+                              <TableColumn fx:id="tbl_persembe_derslik" prefWidth="142.39996337890625" text="Derslik" />
+                           </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="Cuma">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="tbl_cuma" layoutX="41.0" layoutY="33.0" prefHeight="546.0" prefWidth="853.0">
+                           <columns>
+                              <TableColumn fx:id="tbl_cuma_saat" prefWidth="104.00001525878906" text="Saat" />
+                              <TableColumn fx:id="tbl_cuma_dersKodu" prefWidth="122.39996337890625" text="Ders Kodu" />
+                              <TableColumn fx:id="tbl_cuma_dersAdi" minWidth="0.0" prefWidth="96.800048828125" text="Ders Adı" />
+                              <TableColumn fx:id="tbl_cuma_derslik" prefWidth="142.39996337890625" text="Derslik" />
+                           </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+         </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

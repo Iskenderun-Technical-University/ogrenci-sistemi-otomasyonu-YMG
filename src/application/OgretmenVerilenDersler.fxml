@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="720.0" prefWidth="1021.0" style="-fx-background-color: #A8AAAA;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="application.OgretmenVerilenDerslerController">
+   <children>
+      <TableView fx:id="tbl_dersler" layoutX="55.0" layoutY="120.0" prefHeight="334.0" prefWidth="911.0">
+        <columns>
+          <TableColumn fx:id="col__DersKodu" prefWidth="75.0" text="Ders Kodu" />
+          <TableColumn fx:id="col_Dersadi" prefWidth="75.0" text="Ders Adı" />
+            <TableColumn fx:id="col_sinif" prefWidth="75.0" text="Sınıf" />
+            <TableColumn fx:id="col_kredi" prefWidth="82.39996337890625" text="Ders Kredisi" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+   </children>
+</AnchorPane>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1021.0" style="-fx-background-color: #A8AAAA;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.OgretmenDanismanGetirController">
+   <children>
+      <TableView fx:id="tbl_ogrenciler" layoutX="11.0" layoutY="80.0" prefHeight="559.0" prefWidth="998.0">
+        <columns>
+            <TableColumn fx:id="column_ogrnum" prefWidth="119.99999713897705" text="Öğrenci Numarası" />
+          <TableColumn fx:id="column_ograd" prefWidth="138.40000915527344" text="Öğrenci Ad" />
+          <TableColumn fx:id="column_ogrsoyad" prefWidth="147.20001220703125" text="Öğrenci Soyad" />
+            <TableColumn fx:id="column_ogrbolum" prefWidth="224.0" text="Bölüm" />
+            <TableColumn fx:id="column_ogrsinif" prefWidth="53.60003662109375" text="Sınıf" />
+            <TableColumn fx:id="column_ogrogretim" prefWidth="71.20001220703125" text="Öğretim" />
+            <TableColumn fx:id="column_ogrmail" prefWidth="241.60003662109375" text="Mail" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

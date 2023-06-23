@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1021.0" style="-fx-background-color: #A8AAAA;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.OgretmenDuyuruYapController">
+   <children>
+      <Pane layoutX="58.0" layoutY="48.0" prefHeight="594.0" prefWidth="918.0" style="-fx-background-color: #8EB1CA;">
+         <children>
+            <TextArea fx:id="txt_area" layoutX="37.0" layoutY="127.0" prefHeight="439.0" prefWidth="845.0" />
+            <TextField fx:id="txt_baslik" layoutX="37.0" layoutY="64.0" prefHeight="25.0" prefWidth="473.0" promptText="Duyuru İçin Başlık Girin" />
+            <ComboBox fx:id="combo_bolum" layoutX="575.0" layoutY="64.0" prefWidth="150.0" promptText="Bölüm Seçin" />
+         </children>
+      </Pane>
+      <Button fx:id="btn_duyuru_yap" layoutX="863.0" layoutY="660.0" mnemonicParsing="false" onAction="#btn_duyuru_yap_Click" prefHeight="34.0" prefWidth="114.0" style="-fx-background-radius: 8 8 8 8;" text="Duyuru Yap" />
+   </children>
+</AnchorPane>

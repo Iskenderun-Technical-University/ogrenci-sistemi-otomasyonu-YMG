@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="720.0" prefWidth="1021.0" style="-fx-background-color: #A8AAAA;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="application.adminDersAcma">
+   <children>
+      <ComboBox fx:id="combo_ders" layoutX="131.0" layoutY="65.0" onAction="#combo_ders_Action" prefHeight="26.0" prefWidth="220.0" promptText="Ders Seçiniz" />
+      <Button fx:id="btn_kayit" layoutX="449.0" layoutY="66.0" mnemonicParsing="false" onAction="#btn_kayit_Click" prefHeight="26.0" prefWidth="183.0" text="Seçilen Dersin Kayıtını Aç" />
+   </children>
+</AnchorPane>

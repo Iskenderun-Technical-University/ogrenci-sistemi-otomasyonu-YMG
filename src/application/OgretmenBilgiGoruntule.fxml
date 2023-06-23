@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1021.0" style="-fx-background-color: #A8AAAA;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.OgretmenBilgiGoruntuleController">
+   <children>
+      <Pane layoutX="74.0" layoutY="70.0" prefHeight="602.0" prefWidth="873.0" style="-fx-background-color: #C7D0D6; -fx-background-radius: 100 0 100 0;">
+         <children>
+            <VBox alignment="CENTER" layoutX="109.0" layoutY="77.0" prefHeight="449.0" prefWidth="182.0" spacing="30.0" style="-fx-background-color: #AFDCF9; -fx-background-radius: 50 0 0 0;">
+               <children>
+                  <Label text="Ad">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+                  <Label text="Soyad">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="8.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label text="Kullanıcı Ad">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets right="4.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label text="Fakülte">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="2.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label text="Bölüm">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+                  <Label text="Mail">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+                  <Label text="Adres">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER_LEFT" layoutX="336.0" layoutY="77.0" prefHeight="449.0" prefWidth="429.0" spacing="30.0" style="-fx-background-color: #AFDCF9; -fx-background-radius: 0 0 50 0;">
+               <children>
+                  <Label fx:id="lbl_Ad" text="ad">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lbl_Soyad" text="soyad">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lbl_Kul_Ad" text="kul_Ad">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lbl_Fak" text="fak">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lbl_Bol" text="bölüm">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lbl_Mail" text="mail">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lbl_Adres" text="adre">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER_LEFT" layoutX="290.0" layoutY="77.0" prefHeight="449.0" prefWidth="47.0" spacing="30.0" style="-fx-background-color: #AFDCF9;">
+               <children>
+                  <Label text=":">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+                  <Label text=":">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+                  <Label text=":">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+                  <Label text=":">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+                  <Label text=":">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+                  <Label text=":">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+                  <Label text=":">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
